@@ -1,0 +1,134 @@
+<main id="main" class="main">
+    <!-- End Page Title -->
+    
+        <section class="section">
+            <div class="row d-flex">
+                <div class="pagetitle">
+                    <h1 class="float-start">Compose</h1>
+                            <nav class="float-end">
+                              <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item">Tables</li>
+                                <li class="breadcrumb-item active">Data</li>
+                              </ol>
+                            </nav>
+                  </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="mail-nav">
+                            <button type="button" class="btn btn-success waves-effect mb-3" routerLink="compose">COMPOSE</button>
+                            <ul class="nav nav-pills flex-column" id="mail-folders">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#" title="Inbox" routerLink="/inbox">Inbox <span class="badge bg-warning float-end">6</span></a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="#" title="Sent">Sent</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#" title="Draft">Draft</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#" title="Bin">Bin</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#" title="Important">Important</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#" title="Starred">Starred</a></li>
+                            </ul>
+                            <h5 class="border-bottom p-2 font-weight-bold">Labels</h5>
+                            <ul class="nav nav-pills flex-row" id="mail-labels">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="bi bi-tag text-danger"></i>Family</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="bi bi-tag text-primary"></i>Work</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="bi bi-tag text-warning"></i>Shop</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="bi bi-tag text-info"></i>Themeforest</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="bi bi-tag text-primary"></i>Google</a>
+                                </li>
+                            </ul>
+                            <h5 class="border-bottom p-2 font-weight-bold">Online</h5>
+                            <ul class="nav nav-pills flex-column online-user" id="online-offline">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i title="Online" class="bi bi-circle-fill text-success"></i>Sachin</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i title="Off Line" class="bi bi-circle text-indigo"></i>John Smith </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i title="Away" class="bi bi-circle text-warning"></i>Askay</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i title="Off Line" class="bi bi-circle text-indigo"></i>Dhavan</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i title="Off Line" class="bi bi-circle text-indigo"></i>Lee</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="card">
+                    <div class="boxs mail_listing">
+                        <div class="inbox-center table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th colspan="1" style="background-color: #BCD5EE;">
+                                            <div class="datatable-top ms-0 text-muted">
+                                                <!-- <p>Compose New Message</p> -->
+                                                Compose New Message
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form novalidate="" class="composeForm ng-untouched ng-pristine ng-valid">
+                                    <div class="form-group ms-3 mt-4 me-3">
+                                        <label for="email_address">To</label>
+                                        <input type="email" class="form-control" id="email_address" aria-describedby="emailHelp">
+                                    </div>
+                                    <div class="form-group ms-3 mt-4 me-3 ">
+                                        <label for="subject">Subject</label>
+                                        <input type="text" class="form-control" id="subject">
+                                    </div>
+                                    <div class="card mt-4 ms-3 me-3">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Quill Editor Bubble</h5>
+                                          <!-- Quill Editor Bubble -->
+                                          <p>Select some text to display options in poppovers</p>
+                                          <div class="quill-editor-bubble" id="editor">
+                                            <p>Hello World!</p>
+                                            <p>This is Quill <strong>bubble</strong> editor</p>
+                                          </div>
+                                          <!-- End Quill Editor Bubble -->
+                            
+                                        </div>
+                                      </div>
+                                    <div class="compose-editor m-t-20 ms-4 mt-4">
+                                        <div id="summernote"></div>
+                                        <input type="file" multiple class="form-control-file">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="m-l-25 m-b-20 ms-4 mt-4 mb-3">
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                    <button type="button" class="btn btn-danger">Discard</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+        </div>
+            </section>
+            </main>

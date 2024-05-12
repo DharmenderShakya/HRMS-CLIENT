@@ -1,0 +1,136 @@
+<main id="main" class="main">
+    <!-- End Page Title -->
+    
+        <section class="section">
+          <div class="row">
+            <div class="pagetitle">
+                <h1 class="float-start">Job List</h1>
+                <nav class="float-end">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Tables</li>
+                    <li class="breadcrumb-item active">Data</li>
+                  </ol>
+                </nav>
+              </div>
+            <div class="col-lg-12">
+                <div class="datatable-top ms-0" style="background-color: #BCD5EE;">
+                    <div class="datatable-search">
+                            <span><strong>Joblist</strong></span><input class="datatable-input ms-3 rounded" placeholder="Search..." type="search" title="Search within table">
+                        </div>
+                        <div class="d-flex">
+                          <button type="button" class="btn btn-sm btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 2rem; height:2rem;"><i class="bi bi-plus-lg icon"></i></button>
+                            
+                            <button type="button" class="btn btn-sm btn-success rounded-pill" style="width: 2rem; height:2rem;"><i class="bi bi-arrow-clockwise icon"></i></button>
+                         
+                            <a href="#"><img src="assets/img/xlsx.png" alt="sdfghjk" style="height: 30px; width: auto;"></a>
+                            </div>
+                </div>
+              <div class="card" style="border-radius: 0;">
+                <div class="card-body">
+                  <!-- Table with stripped rows -->
+                  <table class="table datatable">
+                    <thead>
+                      <tr>
+                        <th>Image</th>
+                        <th>
+                          <b>N</b>ame
+                        </th>
+                        <th>Employee_Id</th>
+                        <th>Deparment</th>
+                        <th>Role</th>
+                        <th>Email</th>
+                        <th>Salary</th>
+                        <th>Payslip</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Haviva Hernandez</td>
+                        <td>8136</td>
+                        <td>Suwałki</td>
+                        <td>2000/30/01</td>
+                        <td>16%</td>
+                        <td>16%</td>
+                        <td>16%</td>
+                        <td>16%</td>
+                        <td>16%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- End Table with stripped rows -->
+                  <div class="datatable-bottom">
+        <div class="datatable-info">Showing 1 to 10 of 100 entries</div>
+        <nav class="datatable-pagination"><ul class="datatable-pagination-list"><li class="datatable-pagination-list-item datatable-hidden datatable-disabled"><button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">‹</button></li><li class="datatable-pagination-list-item datatable-active"><button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">1</button></li><li class="datatable-pagination-list-item"><button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">2</button></li><li class="datatable-pagination-list-item"><button data-page="3" class="datatable-pagination-list-item-link" aria-label="Page 3">3</button></li><li class="datatable-pagination-list-item"><button data-page="4" class="datatable-pagination-list-item-link" aria-label="Page 4">4</button></li><li class="datatable-pagination-list-item"><button data-page="5" class="datatable-pagination-list-item-link" aria-label="Page 5">5</button></li><li class="datatable-pagination-list-item"><button data-page="6" class="datatable-pagination-list-item-link" aria-label="Page 6">6</button></li><li class="datatable-pagination-list-item"><button data-page="7" class="datatable-pagination-list-item-link" aria-label="Page 7">7</button></li><li class="datatable-pagination-list-item datatable-ellipsis datatable-disabled"><button class="datatable-pagination-list-item-link">…</button></li><li class="datatable-pagination-list-item"><button data-page="10" class="datatable-pagination-list-item-link" aria-label="Page 10">10</button></li><li class="datatable-pagination-list-item"><button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">›</button></li></ul></nav>
+    </div>
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </section>
+      </main>
+    
+      <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header mt-2" style="border: none;">
+              <h5 class="modal-title ms-5" id="exampleModalLabel">New Leaves</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="row">
+                  <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                      <div class="form-group">
+                          <label for="name">Name</label>
+                          <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                          <div class="invalid-feedback">Name is required</div>
+                      </div>
+                  </div>
+                  <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                      <div class="form-group">
+                          <label for="leaveType">Department</label>
+                          <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                    <div class="form-group">
+                        <label for="from">Role</label>
+                        <input type="date" class="form-control" id="from" placeholder="Enter your name" required>
+                        <div class="invalid-feedback">Name is required</div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <div class="form-group">
+                        <label for="to">Project</label>
+                        <input type="text" class="form-control" id="to" placeholder="Enter leave type" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                  <div class="form-group">
+                      <label for="name">Mobile</label>
+                      <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                  </div>
+              </div>
+              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <div class="form-group">
+                      <label for="leaveType">Email</label>
+                      <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                  </div>
+              </div>
+          </div>
+              </form>
+            </div>
+            <div class="ms-5 mb-3">
+              <button type="button" class="btn btn-danger">Send message</button>
+              <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>

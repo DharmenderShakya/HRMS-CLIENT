@@ -1,0 +1,433 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" href="#" routerLink="/deshboard/deshboard">
+        <i class="bi bi-display"></i>
+        Dashboard
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="role === 'EMPLOYEE'">
+      <a class="nav-link collapsed" href="#" routerLink="/deshboard/empdesh">
+        <i class="bi bi-display"></i>
+        Dashboard
+      </a>
+    </li>
+    
+    <li class="nav-item" *ngIf="role === 'CLIENT'">
+      <a class="nav-link collapsed" href="#" routerLink="/deshboard/empdesh">
+        <i class="bi bi-display"></i>
+        Dashboard
+      </a>
+    </li>
+    <!-- End Dashboard Nav -->
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-kanban"></i><span>Project</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="list-style: none;">
+        <li>
+          <a href="components-alerts.html" routerLink="allproject">
+             <span>All Project</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-accordion.html" routerLink="addproject">
+             <span>Add Project</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-badges.html" routerLink="projectEstimate">
+             <span>Estimates</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-breadcrumbs.html" routerLink="projectdetails">
+             <span>Project Details</span>
+          </a>
+        </li>
+
+      </ul>
+    </li><!-- End Components Nav -->
+
+    <li class="nav-item" style="list-style: none;" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" data-bs-target="#employee-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-people-fill"></i><span>Employee</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="employee-nav" class="nav-content collapse list-unstyled" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="components-alerts.html" routerLink="allemployee">
+             <span>All Employee</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-accordion.html" routerLink="addemployee">
+             <span>Add Employee</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-badges.html" routerLink="editemployee">
+             <span>Edit Employee</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-breadcrumbs.html" routerLink="employeeProfile">
+             <span>Employee Profile</span>
+          </a>
+        </li>
+
+      </ul>
+    </li><!-- End Components Nav -->
+
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-calendar-check"></i><span>Leave</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="forms-elements.html" routerLink="allLeaveRequest">
+             <span>ALL Leave Resquest</span>
+          </a>
+        </li>
+        <li>
+          <a href="forms-layouts.html" routerLink="leaveBalence">
+             <span>Leave Balence</span>
+          </a>
+        </li>
+        <li>
+          <a href="forms-editors.html" routerLink="leaveType">
+             <span>Leave Type</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-calendar-event"></i><span>Holiday</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="tables-general.html" routerLink="allholiday">
+             <span>All Holiday</span>
+          </a>
+        </li>
+        <li>
+          <a href="tables-data.html" routerLink="addholidya">
+             <span>Add Holidya</span>
+          </a>
+        </li>
+        <li>
+          <a href="tables-data.html" routerLink="editholiday">
+             <span>Edit Holidya</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Tables Nav -->
+
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" data-bs-target="#charts-att" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-clock"></i><span>Attendance</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="charts-att" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="charts-chartjs.html" routerLink="todayAttendance">
+             <span>Today Attendance</span>
+          </a>
+        </li>
+        <li>
+          <a href="charts-apexcharts.html" routerLink="employeeattendance">
+             <span>Employee Attendance</span>
+          </a>
+        </li>
+        <li>
+          <a href="charts-echarts.html" routerLink="attendanceSheet">
+             <span>Attendance Sheet</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Charts Nav -->
+
+    <li class="nav-item"*ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-person-check"></i><span>Client</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="icons-bootstrap.html" routerLink="allclient">
+             <span>All Client</span>
+          </a>
+        </li>
+        <li>
+          <a href="icons-remix.html" routerLink="addclient">
+             <span>Add Client</span>
+          </a>
+        </li>
+        <li>
+          <a href="icons-boxicons.html" routerLink="editclient">
+             <span>Edit Client</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Icons Nav -->
+
+
+    <li class="nav-item"*ngIf="role === 'CLIENT'">
+      <a class="nav-link collapsed" data-bs-target="#icons-support" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-list"></i><span>Support</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="icons-support" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="icons-bootstrap.html" routerLink="ticketsupport">
+             <span>Tickets</span>
+          </a>
+        </li>
+        <li>
+          <a href="icons-remix.html" routerLink="ticketdetails">
+             <span>Tickets Details</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Cleint Ticket support -->
+
+    <li class="nav-item"*ngIf="role === 'CLIENT'">
+      <a class="nav-link collapsed" data-bs-target="#icons-Project" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-code"></i><span>Projects</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="icons-Project" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="icons-bootstrap.html" routerLink="clientproject">
+             <span>Project</span>
+          </a>
+        </li>
+        <li>
+          <a href="icons-remix.html" routerLink="projectdetails">
+             <span>Project Details</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Cleint Project support -->
+
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" data-bs-target="#account-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-briefcase"></i><span>Account</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="account-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="icons-bootstrap.html" routerLink="allpayment">
+             <span>All Payment</span>
+          </a>
+        </li>
+        <li>
+          <a href="icons-remix.html" routerLink="addpayment">
+             <span>Add Payment</span>
+          </a>
+        </li>
+        <li>
+          <a href="icons-boxicons.html" routerLink="invoice">
+             <span>Invoice</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Icons Nav -->
+
+    <li class="nav-item" *ngIf="role === 'EMPLOYEE'">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-bar-chart"></i>
+        <span><a href="" routerLink="allLeaveRequest">MyLeave</a></span>
+      </a>
+    </li>
+
+    <li class="nav-item"*ngIf="role === 'EMPLOYEE'">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-clock"></i>
+        <span><a href="" routerLink="todayAttendance">Attendance</a></span>
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="role === 'EMPLOYEE'">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-kanban"></i>
+        <span><a href="" routerLink="myproject">MyProject</a></span>
+      </a>
+    </li>
+    
+
+    <li class="nav-item" *ngIf="role === 'EMPLOYEE'">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-question-circle"></i>
+        <span><a href="" routerLink="mytask">MyTask</a></span>
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="role === 'EMPLOYEE'">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-people"></i>
+        <span><a href="" routerLink="myteam">MyTeam</a></span>
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="role === 'CLIENT'">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-receipt"></i>
+        <span><a href="" routerLink="billing"></a>Billing</span>
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="role === 'CLIENT'">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-chat-left"></i>
+        <span><a href="" routerLink="chat"></a>Chat</span>
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="role === 'CLIENT'">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-gear"></i>
+        <span><a href="" routerLink="chat"></a>Setting</span>
+      </a>
+    </li>
+
+    <!-- <li class="nav-item" *ngIf="role === 'CLIENT'">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-power"></i>
+        <span><a href="" routerLink="chat"></a>Logout</span>
+      </a>
+    </li> -->
+
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" href="#" routerLink="leaders">
+        <i class="bi bi-shield-check"></i>
+        <span>Leaders</span>
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" data-bs-target="#payrole-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-calculator"></i><span>Payroll</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="payrole-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="icons-bootstrap.html" routerLink="employeeSalary">
+             <span>Employee Salary</span>
+          </a>
+        </li>
+        <li>
+          <a href="icons-remix.html" routerLink="payslip">
+             <span>PaySlip</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Icons Nav -->
+
+
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" data-bs-target="#jobs-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-file-earmark"></i><span>Jobs</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="jobs-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="components-alerts.html" routerLink="joblist">
+             <span>Job List</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-accordion.html" routerLink="resume">
+             <span>Resume</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-badges.html" routerLink="candidate">
+             <span>Candidate</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-breadcrumbs.html" routerLink="shortlisted">
+             <span>ShortListed Cnadidate</span>
+          </a>
+        </li>
+
+      </ul>
+    </li><!-- End Components Nav -->
+
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-bar-chart"></i><span>Report</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="components-alerts.html" routerLink="leaveReport">
+             <span>Leave Report</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-accordion.html" routerLink="expenseReport">
+             <span>Expence Report</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Components Nav -->
+
+    <li class="nav-heading" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'">Apps</li>
+
+    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'">
+      <a class="nav-link collapsed" href="users-profile.html" routerLink="calender">
+        <i class="bi bi-calendar"></i>
+        <span>Calender</span>
+      </a>
+    </li><!-- End Profile Page Nav -->
+
+    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'">
+      <a class="nav-link collapsed" href="pages-faq.html" routerLink="task">
+        <i class="bi bi-question-circle"></i>
+        <span>Task</span>
+      </a>
+    </li><!-- End F.A.Q Page Nav -->
+
+    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'">
+      <a class="nav-link collapsed" href="pages-contact.html" routerLink="contect">
+        <i class="bi bi-phone"></i>
+        <span>Contacts</span>
+      </a>
+    </li><!-- End Contact Page Nav -->
+
+    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'">
+      <a class="nav-link collapsed" href="pages-register.html" routerLink="emailcompose">
+        <i class="bi bi-mailbox"></i>
+        <span>Email</span>
+      </a>
+    </li><!-- End Register Page Nav -->
+
+    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'">
+      <a class="nav-link collapsed" data-bs-target="#more-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-grid-3x3"></i><span>More Apps</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="more-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="components-alerts.html" routerLink="chat">
+             <span>Chat</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-accordion.html" routerLink="contectgrid">
+             <span>Contact Grid</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-accordion.html" routerLink="ticketsupport">
+             <span>Support</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item" *ngIf="role === 'CLIENT' || role === 'EMPLOYEE' || role === 'ADMIN'">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-power"></i>
+        <span><a href="" routerLink="chat"></a>Logout</span>
+      </a>
+    </li>
+    <!-- End Components Nav -->
+  </ul>
+
+</aside><!-- End Sidebar-->
