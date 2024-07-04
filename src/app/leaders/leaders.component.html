@@ -45,28 +45,22 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Haviva Hernandez</td>
-                        <td>8136</td>
-                        <td>Suwałki</td>
-                        <td>2000/30/01</td>
-                        <td>16%</td>
-                        <td>16%</td>
-                        <td>16%</td>
-                      </tr>
-                      <tr>
-                        <td>Alisa Horn</td>
-                        <td>9853</td>
-                        <td>Ucluelet</td>
-                        <td>2007/01/11</td>
-                        <td>39%</td>
-                      </tr>
-                      <tr>
-                        <td>Zelenia Roman</td>
-                        <td>7516</td>
-                        <td>Redwater</td>
-                        <td>2012/03/03</td>
-                        <td>31%</td>
+                      <tr *ngFor="let emp of employee">
+                        <td><img class="rounded-circle ms-1" *ngIf="emp.image" [src]="'data:image/png;base64,'+emp.image" style="height: 30px;width: 30px;"></td>
+                        <td>{{emp.name}}</td>
+                        <td>{{emp.department}}</td>
+                        <td>{{emp.employee_role}}</td>
+                        <td>{{emp.role}}</td>
+                        <td>{{emp.phone_no}}</td>
+                        <td>{{emp.email}}</td>
+                        <td class="d-flex justify-content-center">
+                          <button type="button" class="btn btn-accent">
+                            <i class="bi bi-pencil-square text-primary"></i>
+                          </button>
+                          <button type="button" class="btn btn-accent">
+                            <i class="bi bi-trash text-danger"></i>
+                          </button>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -94,52 +88,107 @@
               <form>
                 <div class="row">
                   <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
-                      <div class="form-group">
-                          <label for="name">Name</label>
-                          <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-                          <div class="invalid-feedback">Name is required</div>
+                    <label for="name">Leader Name<span class="required">*</span></label>
+                    <input class="form-control" id="name" name="name" placeholder="Enter name here" [(ngModel)]="leader.name">
+                        <!-- <option selected>Select Leader Name</option>
+                        <option *ngFor="let emp of employee">{{emp.name}}</option>
+                      </select> -->
                       </div>
-                  </div>
                   <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
-                      <div class="form-group">
-                          <label for="leaveType">Department</label>
-                          <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                    <label for="department">Department<span class="required">*</span></label>
+                    <select class="form-control" id="department" name="department" [(ngModel)]="leader.department">
+                      <option selected>Select Department</option>
+                      <option *ngFor="let emp of employee">{{emp.department}}</option>
+                      </select>
+                      <!-- <ng-multiselect-dropdown
+                      id="multiSelect"
+                      [placeholder]="'custom placeholder'"
+                      [settings]="dropdownSettings"
+                      [data]="dropdownList"
+                      [(ngModel)]="selectedItems"
+                        >
+                      </ng-multiselect-dropdown> -->
                       </div>
-                  </div>
+
               </div>
               <div class="row">
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                     <div class="form-group">
-                        <label for="from">Role</label>
-                        <input type="date" class="form-control" id="from" placeholder="Enter your name" required>
-                        <div class="invalid-feedback">Name is required</div>
+                        <label for="mobile">Date OF Birth</label>
+                        <input type="date" class="form-control" id="mobile" placeholder="Enter your name" name="mobile" required [(ngModel)]="leader.mobile">
                     </div>
                 </div>
-                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
-                    <div class="form-group">
-                        <label for="to">Project</label>
-                        <input type="text" class="form-control" id="to" placeholder="Enter leave type" required>
+                
+                    <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                      <label for="email">Gender<span class="required">*</span></label>
+                      <select type="text" class="form-control" id="email" name="email" [(ngModel)]="leader.email">
+                          <option value="" selected>Select Project</option>
+                          <option value="MALE">MALE</option>
+                          <option value="FEMALE">FEMALE</option>
+                        </select>
+                        </div>
+            </div>
+              <div class="row">
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                  <label for="role">Leader<span class="required">*</span></label>
+                  <input type="text" class="form-control" id="role" name="role" placeholder="Leader role" [(ngModel)]="leader.role">
+                      <!-- <option selected>Select Department</option>
+                      <option *ngFor="let emp of role">{{emp}}</option>
+                    </select> -->
                     </div>
-                </div>
+                    <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2  ">
+                      <label for="Degree">Degree<span class="required">*</span></label>
+                      <input type="text" class="form-control" id="Degree" name="Degree" [(ngModel)]="leader.project">
+                          <!-- <option selected>Select Project</option>
+                          <option *ngFor="let emp of employee">{{emp.project}}</option>
+                        </select> -->
+                        </div>
             </div>
             <div class="row">
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                   <div class="form-group">
-                      <label for="name">Mobile</label>
-                      <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                      <label for="Email">Email</label>
+                      <input type="text" class="form-control" id="Email" placeholder="Leader address" name="Email" required [(ngModel)]="leader.mobile">
                   </div>
               </div>
-              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <div class="form-group">
-                      <label for="leaveType">Email</label>
-                      <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
-                  </div>
-              </div>
+              
+                  <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <label for="Address">Address<span class="required">*</span></label>
+                    <input type="text" class="form-control" id="Address" name="Address" [(ngModel)]="leader.email">
+                        <!-- <option selected>Select Project</option>
+                        <option *ngFor="let emp of employee">{{emp.email}}</option>
+                      </select> -->
+                      </div>
           </div>
+            <div class="row">
+              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                  <div class="form-group">
+                      <label for="mobile">Mobile</label>
+                      <input type="text" class="form-control" id="mobile" placeholder="Enter your name" name="mobile" required [(ngModel)]="leader.mobile">
+                  </div>
+              </div>
+              
+                  <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <label for="Password">Password<span class="required">*</span></label>
+                    <input type="text" class="form-control" id="Password" name="Password" [(ngModel)]="leader.email">
+                        <!-- <option selected>Select Project</option>
+                        <option *ngFor="let emp of employee">{{emp.email}}</option>
+                      </select> -->
+                      </div>
+          </div>
+          <div class="row">
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                  <label for="file">Upload Photo<span class="required">*</span></label>
+                  <input type="file" class="form-control" id="file" name="file" [(ngModel)]="leader.email">
+                      <!-- <option selected>Select Project</option>
+                      <option *ngFor="let emp of employee">{{emp.email}}</option>
+                    </select> -->
+                    </div>
+        </div>
               </form>
             </div>
             <div class="ms-5 mb-3">
-              <button type="button" class="btn btn-danger">Send message</button>
+              <button type="button" class="btn btn-danger" (click)="addLeaders()">Send message</button>
               <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>

@@ -5,11 +5,10 @@ import { AllPaymentsComponent } from './all-payments/all-payments.component';
 import { CalenderComponent } from './calender/calender.component';
 import { CandidateComponent } from './Candidates/candidate/candidate.component';
 import { ChatComponent } from './chat/chat.component';
-import { ExpenseReportComponent } from './expense-report/expense-report.component';
+import { ExpenseReportComponent } from './expense-report/ExpenseReportComponent';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { JobListComponent } from './Candidates/job-list/job-list.component';
 import { PayslipComponent } from './payslip/payslip.component';
-import { ResumeComponent } from './Candidates/resume/resume.component';
 import { ShortListedCandidateComponent } from './Candidates/short-listed-candidate/short-listed-candidate.component';
 import { TaskComponent } from './task/task.component';
 import { TicketSupportComponent } from './ticket-support/ticket-support.component';
@@ -52,6 +51,7 @@ import { MyTeamComponent } from './my-team/my-team.component';
 import { ClientProjectsComponent } from './client-projects/client-projects.component';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
 import { BillingComponent } from './Clients/billing/billing.component';
+import { TeamComponent } from './team/team.component';
 
 const routes: Routes = [
   {
@@ -224,10 +224,6 @@ const routes: Routes = [
       component:ProjectEstimatesComponent
     },
     {
-      path:'resume',
-      component:ResumeComponent
-    },
-    {
       path:'shortlisted',
       component:ShortListedCandidateComponent
     },
@@ -282,6 +278,14 @@ const routes: Routes = [
     {
       path:'billing',
       component:BillingComponent
+    },
+    {
+      path:'team',
+      component:TeamComponent
+    },
+    {
+      path:'candidate/apply/:id',
+      component:CandidateComponent
     }
   ]
   },

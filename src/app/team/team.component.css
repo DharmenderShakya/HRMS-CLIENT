@@ -1,0 +1,35 @@
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    border: 1px solid #454242;
+    padding: 10px;
+    width: 100%;
+    max-height: 200px; /* Set maximum height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    z-index: 1000;
+  }
+  
+  .dropdown-menu.show {
+    display: block;
+  }
+  
+  .dropdown-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+  }
+
+  .btn.form-select.form-control {
+    border: 1px solid #e5dede; /* Border for the button */
+    border-radius: 0.25rem; /* Optional: Border radius for better visual */
+    background-color: white; /* Ensure background is white */
+    text-align: left; /* Align text to the left */
+  }
+  

@@ -4,6 +4,8 @@ import { DeshboardComponent } from 'src/app/full-home/deshboard/deshboard.compon
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from 'src/app/login/login.component';
 
 const routes: Routes = [
   { path: 'navbar', component:NavbarComponent },
@@ -13,9 +15,10 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class HomeRoutingModule { }

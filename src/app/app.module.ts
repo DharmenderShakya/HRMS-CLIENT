@@ -10,10 +10,9 @@ import { AddPaymentComponent } from './add-payment/add-payment.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { PayslipComponent } from './payslip/payslip.component';
 import { LeadersComponent } from './leaders/leaders.component';
-import { ExpenseReportComponent } from './expense-report/expense-report.component';
+import { ExpenseReportComponent } from './expense-report/ExpenseReportComponent';
 import { CandidateComponent } from './Candidates/candidate/candidate.component';
 import { JobListComponent } from './Candidates/job-list/job-list.component';
-import { ResumeComponent } from './Candidates/resume/resume.component';
 import { ShortListedCandidateComponent } from './Candidates/short-listed-candidate/short-listed-candidate.component';
 import { CalenderComponent } from './calender/calender.component';
 import {FullCalendarModule } from '@fullcalendar/angular';
@@ -24,7 +23,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { FormsModule } from '@angular/forms';
 import { BillingComponent } from './Clients/billing/billing.component';
 import { ClientDeshboardComponent } from './Clients/client-deshboard/client-deshboard.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TodayAttentanceComponent } from './Attendance/today-attentance/today-attentance.component';
 import { EmployeeAttendanceComponent } from './Attendance/employee-attendance/employee-attendance.component';
 import { EmployeeAttendanceSheetComponent } from './Attendance/employee-attendance-sheet/employee-attendance-sheet.component';
@@ -56,6 +55,14 @@ import { FullHomeComponent } from './full-home/full-home.component';
 import { MyProjectComponent } from './my-project/my-project.component';
 import { MyTaskComponent } from './my-task/my-task.component';
 import { ClientProjectsComponent } from './client-projects/client-projects.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { LoginComponent } from './login/login.component';
+import { TeamComponent } from './team/team.component';
+import { MyTeamComponent } from './my-team/my-team.component';
+import { ToastrModule, provideToastr } from 'ngx-toastr';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { NgxSpinner, NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './loading.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +98,6 @@ import { ClientProjectsComponent } from './client-projects/client-projects.compo
     ExpenseReportComponent,
     CandidateComponent,
     JobListComponent,
-    ResumeComponent,
     ShortListedCandidateComponent,
     CalenderComponent,
     TaskComponent,
@@ -110,15 +116,30 @@ import { ClientProjectsComponent } from './client-projects/client-projects.compo
     MyProjectComponent,
     MyTaskComponent,
     ClientProjectsComponent,
+    LoginComponent,
+    TeamComponent,
+    MyTeamComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FullCalendarModule,
     FormsModule,
     HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    ToastrModule.forRoot(),
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
   ],
-  providers: [],
+  providers: [
+    provideAnimations(), // required animations providers
+    provideToastr(), 
+   {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoadingInterceptor,
+    multi: true
+   }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

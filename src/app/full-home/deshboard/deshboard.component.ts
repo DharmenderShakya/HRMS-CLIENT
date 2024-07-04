@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit} from '@angular/core';
 import * as ApexCharts from 'apexcharts';
+import { color } from 'echarts';
 
 @Component({
   selector: 'app-deshboard',
@@ -262,6 +263,7 @@ export class DeshboardComponent implements OnInit{
         curve: 'straight'
       },
       fill: {
+        colors:['#F44336', '#E91E63', '#9C27B0'],
         opacity: 0.3
       },
       xaxis: {
@@ -280,7 +282,7 @@ export class DeshboardComponent implements OnInit{
         }
       },
       subtitle: {
-        text: 'Profits',
+        text: 'Earning',
         offsetX: 0,
         style: {
           fontSize: '14px',
@@ -310,6 +312,7 @@ export class DeshboardComponent implements OnInit{
         curve: 'straight'
       },
       fill: {
+        colors: [ '#9C27B0'],
         opacity: 0.3
       },
       xaxis: {
@@ -321,14 +324,14 @@ export class DeshboardComponent implements OnInit{
         min: 0
       },
       title: {
-        text: '$135,965',
+        text: '129',
         offsetX: 0,
         style: {
           fontSize: '24px',
         }
       },
       subtitle: {
-        text: 'Profits',
+        text: 'New Clients',
         offsetX: 0,
         style: {
           fontSize: '14px',
@@ -359,6 +362,7 @@ export class DeshboardComponent implements OnInit{
         curve: 'straight'
       },
       fill: {
+        colors: [ '#01FFC4'],
         opacity: 0.3
       },
       xaxis: {
@@ -370,14 +374,14 @@ export class DeshboardComponent implements OnInit{
         min: 0
       },
       title: {
-        text: '$135,965',
+        text: '154',
         offsetX: 0,
         style: {
           fontSize: '24px',
         }
       },
       subtitle: {
-        text: 'Profits',
+        text: 'Projects',
         offsetX: 0,
         style: {
           fontSize: '14px',
@@ -405,6 +409,7 @@ export class DeshboardComponent implements OnInit{
         curve: 'straight'
       },
       fill: {
+        colors: [ '#FFB701'],
         opacity: 0.3
       },
       xaxis: {
@@ -416,14 +421,14 @@ export class DeshboardComponent implements OnInit{
         min: 0
       },
       title: {
-        text: '$135,965',
+        text: '650',
         offsetX: 0,
         style: {
           fontSize: '24px',
         }
       },
       subtitle: {
-        text: 'Profits',
+        text: 'Employees',
         offsetX: 0,
         style: {
           fontSize: '14px',

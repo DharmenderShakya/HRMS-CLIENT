@@ -32,7 +32,7 @@
                 <table class="table datatable">
                   <thead>
                     <tr>
-                      <th>Image</th>
+                      <!-- <th>Image</th> -->
                       <th>
                         <b>N</b>ame
                       </th>
@@ -46,19 +46,26 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Unity Pugh</td>
-                      <td>9958</td>
-                      <td>Curicó</td>
-                      <td>2005/02/11</td>
-                      <td>37%</td>
-                      <td>37%</td>
-                      <td>37%</td>
-                      <td>37%</td>
-                      <td>37%</td>
-                      <td></td>
+                    <tr *ngFor="let req of request">
+                      <td>{{req.name}}</td>
+                      <td>{{req.leaveType}}</td>
+                      <td>{{req.from}}</td>
+                      <td>{{req.to}}</td>
+                      <td>{{req.leaveDays}}</td>
+                    <td class="cdk-column-status">
+                      <span class="badge badge-pill bg-success text-white" *ngIf="req.status==='ACCEPTED'">ACCEPTED</span>
+                      <span class="badge badge-pill bg-danger text-white" *ngIf="req.status==='REJECTED'">REJECTED</span>
+                  </td>
+                  <td>{{req.reason}}</td>
+                      <td class="d-flex">
+                        <button type="button" class="btn" (click)="openUpdateModel(req.id)">
+                          <i class="bi bi-pencil-square text-primary"></i>
+                        </button>
+                        <button type="button" class="btn">
+                          <i class="bi bi-trash text-danger"></i>
+                        </button>
+                      </td>
                     </tr>
-                    
                   </tbody>
                 </table>
                 <!-- End Table with stripped rows -->
@@ -79,59 +86,77 @@
         <div class="modal-content">
           <div class="modal-header mt-2" style="border: none;">
             <h5 class="modal-title ms-5" id="exampleModalLabel">New Leaves</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" (click)="closeModel()" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form>
               <div class="row">
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-                        <div class="invalid-feedback">Name is required</div>
-                    </div>
-                </div>
+                  <div class="form-group" *ngIf="mStatus===false">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required [(ngModel)]="leavaeRequest.name">
+                      <div class="invalid-feedback">Name is required</div>
+                  </div>
+                  <div *ngIf="mStatus">
+                    <label for="Name">Name<span class="required">*</span></label>
+                    <select class="form-select form-control" id="Name" name="Name" [(ngModel)]="leavaeRequest.name">
+                        <option selected>Select Employee</option>
+                        <option *ngFor="let emp of employee">{{emp.name}}</option>
+                    </select>
+                  </div>
+              </div>
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
-                    <div class="form-group">
-                        <label for="leaveType">Leave Type</label>
-                        <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
-                    </div>
+                  <div class="form-group" *ngIf="mStatus===false">
+                    <label for="type">Leave Type</label>
+                    <input type="text" class="form-control" id="type" name="type" placeholder="Enter your name" required [(ngModel)]="leavaeRequest.leaveType">
+                    <div class="invalid-feedback">Name is required</div>
+                </div>
+                <div *ngIf="mStatus">
+                  <label for="type">Leave Type<span class="required">*</span></label>
+                  <select class="form-select form-control" id="type" name="type" [(ngModel)]="leavaeRequest.leaveType">
+                      <option selected>Select Type</option>
+                      <option *ngFor="let leave of leaveType">{{leave.type}}</option>
+                  </select>
+                </div>
                 </div>
             </div>
             <div class="row">
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                   <div class="form-group">
                       <label for="from">Leave From</label>
-                      <input type="date" class="form-control" id="from" placeholder="Enter your name" required>
+                      <input type="date" class="form-control" id="from" name="from" placeholder="Enter your name" required [(ngModel)]="leavaeRequest.from">
                       <div class="invalid-feedback">Name is required</div>
                   </div>
               </div>
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <div class="form-group">
                       <label for="to">Leave To</label>
-                      <input type="date" class="form-control" id="to" placeholder="Enter leave type" required>
+                      <input type="date" class="form-control" id="to" name="to" placeholder="Enter leave type" required [(ngModel)]="leavaeRequest.to">
                   </div>
               </div>
           </div>
           <div class="row">
             <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                 <div class="form-group">
-                    <label for="name">No Of Days</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                    <label for="Days">No Of Days</label>
+                    <input type="text" class="form-control" id="Days" name="Days" placeholder="Enter your name" required [(ngModel)]="leavaeRequest.leaveDays">
                 </div>
             </div>
             <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
-                <div class="form-group">
-                    <label for="leaveType">Status</label>
-                    <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
-                </div>
+              <div class="form-group">
+                <label for="Status">Status<span class="required">*</span></label>
+                <select class="form-control" id="Status" name="Status" required [(ngModel)]="leavaeRequest.status">
+                  <option value="" selected >Select status</option>
+                    <option *ngFor="let st of status" value="{{st}}">{{st}}</option>
+                </select>
+              </div>
             </div>
         </div>
         <div class="row">
           <div class="col-xl-10 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
             <div class="form-group">
                 <label for="reasone">Reasone</label>
-                <textarea class="form-control" id="reasone" placeholder="write reasone here"></textarea>
+                <input type="text" class="form-control" id="reasone" name="reasone" placeholder="Enter leave type" required [(ngModel)]="leavaeRequest.reason">
             </div>
         </div>
       </div>
@@ -139,15 +164,15 @@
         <div class="col-xl-10 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
             <div class="form-group">
                 <label for="note">Note</label>
-                <textarea class="form-control" id="note" placeholder="write note here"></textarea>
+                <input type="text" class="form-control" id="note" name="note" placeholder="Enter leave type" required>
             </div>
         </div>
     </div>
             </form>
           </div>
           <div class="ms-5 mb-3">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary ms-2">Send message</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModel()" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary ms-2" (click)="leaveRequest()">Send message</button>
           </div>
         </div>
       </div>

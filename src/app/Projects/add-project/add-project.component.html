@@ -21,55 +21,58 @@
                 <label for="FirstName">Project Id<span class="required">*</span></label>
                   <input type="text" class="form-control" placeholder="FirstName" id="FirstName">
                 </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                   <label for="LastName">Project Title<span class="required">*</span></label>
                   <input type="text" class="form-control" placeholder="LastName" id="LastName">
-                </div>
+                </div> -->
+
                 <div class="col-md-6">
-                <label for="Gender">Priority<span class="required">*</span></label>
-                <select class="form-select form-control" id="exampleFormControlSelect1">
-                    <option selected>Project Priority</option>
-                    <option value="1">Low</option>
-                    <option value="2">Medium</option>
-                    <option value="3">High</option>
+                  <label for="title">Project Title<span class="required">*</span></label>
+                  <select class="form-select form-control" id="title" name="title" [(ngModel)]="project.name">
+                    <option selected>Choose Project Title</option>
+                    <option *ngFor="let estimate of estimates">{{estimate.projectName}}</option>
+                  </select> 
+                </div>
+
+                <div class="col-md-6">
+                <label for="priority">Priority<span class="required">*</span></label>
+                <select class="form-select form-control" id="priority" name="priority" [(ngModel)]="project.priority">
+                  <!-- <option selected>Choose Priority</option> -->
+                    <option *ngFor="let pri of priority">{{pri}}</option>
                   </select>
                   </div>
                   <div class="col-md-6">
-                  <label for="Mobile">Client<span class="required">*</span></label>
-                    <input type="text" class="form-control" placeholder="Mobile" id="Mobile">
+                  <label for="Client">Client<span class="required">*</span></label>
+                    <input type="text" class="form-control" placeholder="Mobile" id="Client" name="Client" [(ngModel)]="project.client">
                   </div>
                   <div class="col-md-6">
                     <label for="Password">Project Start Date<span class="required">*</span></label>
-                    <input type="date" class="form-control" placeholder="Password" id="Password">
+                    <input type="date" class="form-control" placeholder="Password" id="Password" [(ngModel)]="project.startDate">
                   </div>
                   <div class="col-md-6">
                   <label for="Confirm Password">Project End Date<span class="required">*</span></label>
-                    <input type="date" class="form-control" placeholder="Confirm Password">
+                    <input type="date" class="form-control" placeholder="Confirm Password" [(ngModel)]="project.endDate">
                   </div>
                   <div class="col-md-6">
-                  <label for="Designation">Price<span class="required">*</span></label>
-                    <input type="number" class="form-control" placeholder="Price" id="Designation">
+                  <label for="Price">Price<span class="required">*</span></label>
+                    <input type="number" class="form-control" placeholder="Price" id="Price" name="Price" [(ngModel)]="project.price">
                   </div>
                   <div class="col-md-6">
-                    <label for="Gender">Department<span class="required">*</span></label>
-                    <select class="form-select form-control" id="exampleFormControlSelect1">
-                        <option selected>Select Department</option>
-                        <option value="1">Designing</option>
-                        <option value="2">Development</option>
-                        <option value="3">Testing</option>
-                        <option value="3">Marketing</option>
-                        <option value="3">Accounts</option>
+                    <label for="department">Department<span class="required">*</span></label>
+                    <select class="form-select form-control" id="department" name="department" [(ngModel)]="project.project_Deparment">
+                        <option selected value="">Select Department</option>
+                        <option value="Designing">Designing</option>
+                        <option value="Development">Development</option>
+                        <option value="Testing">Testing</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Accounts">Accounts</option>
                       </select>
                       </div>
                       <div class="col-md-12">
-                        <label for="Gender">Teams<span class="required">*</span></label>
-                        <select class="form-select form-control" id="exampleFormControlSelect1">
-                            <option selected>Select Team</option>
-                            <option value="1">Designing</option>
-                            <option value="2">Development</option>
-                            <option value="3">Testing</option>
-                            <option value="3">Marketing</option>
-                            <option value="3">Accounts</option>
+                        <label for="team">Teams<span class="required">*</span></label>
+                        <select class="form-select form-control" id="team" name="team" [(ngModel)]="project.teamLeader">
+                            <option selected value="">Select Team</option>
+                            <option *ngFor="let emp of employee" value="{{emp.name}}">{{emp.name}}</option>
                           </select>
                           </div>
                 <div class="col-12 d-flex gap-4">
@@ -77,40 +80,52 @@
                           Work Status :
                         </label>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Active" checked [(ngModel)]="project.status">
                         <label class="form-check-label" for="exampleRadios1">
-                          Default radio
+                          Active
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Completed" checked [(ngModel)]="project.status">
                         <label class="form-check-label" for="exampleRadios1">
-                          Default radio
+                          Completed
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Running" checked [(ngModel)]="project.status">
                         <label class="form-check-label" for="exampleRadios1">
-                          Default radio
+                          Running
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Pending" checked [(ngModel)]="project.status">
                         <label class="form-check-label" for="exampleRadios1">
-                          Default radio
+                          Pending
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Not Started" checked [(ngModel)]="project.status">
+                        <label class="form-check-label" for="exampleRadios1">
+                          Not Started
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Cancled" checked [(ngModel)]="project.status">
+                        <label class="form-check-label" for="exampleRadios1">
+                          Cancled
                         </label>
                       </div>
                   </div>
                 <div class="col-12 mb-5">
-                  <label for="editor">Upload file<span class="required">*</span></label>
-                  <div class="quill-editor-bubble form-control" id="editor"></div>
+                  <label for="editor">Description<span class="required">*</span></label>
+                  <input type="text" class="quill-editor-bubble form-control" id="editor" name="editor" [(ngModel)]="project.projectDescription">
                 </div>
                 <div class="col-12 mt-5">
-                  <label for="File">Upload file<span class="required">*</span></label>
+                  <label for="File">Upload Image<span class="required">*</span></label>
                   <input type="file" class="form-control" placeholder="Education" id="File">
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary" (click)="addProject()">Submit</button>
                   <button type="reset" class="btn btn-secondary">Reset</button>
                 </div>
               </form>

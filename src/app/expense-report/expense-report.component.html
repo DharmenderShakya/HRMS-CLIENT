@@ -32,17 +32,17 @@
                   <table class="table datatable">
                     <thead>
                       <tr>
-                        <th>Image</th>
+                        <!-- <th>Image</th> -->
                         <th>
-                          <b>N</b>ame
+                          Expense By
                         </th>
-                        <th>Employee_Id</th>
-                        <th>Deparment</th>
-                        <th>Role</th>
-                        <th>Email</th>
-                        <th>Salary</th>
-                        <th>Payslip</th>
-                        <th>Action</th>
+                        <th>Invoice No</th>
+                        <th>Date</th>
+                        <th>Expense</th>
+                        <th>Amount</th>
+                        <th>Payment Mode</th>
+                        <th>Status</th>
+                        <th>Paid To</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -53,7 +53,12 @@
                         <td>2000/30/01</td>
                         <td>16%</td>
                         <td>16%</td>
-                        <td>16%</td>
+                        <td class="cdk-column-status" *ngIf="isVisibleStatusPay==='PAID'">
+                          <span class="badge badge-pill bg-primary text-white">PAID</span>
+                      </td> 
+                      <td class="cdk-column-status" *ngIf="isVisibleStatusPay==='UNPAID'">
+                         <span class="badge badge-pill bg-success text-white">UNPAID</span>
+                    </td> 
                         <td>16%</td>
                         <td>16%</td>
                       </tr>
@@ -85,50 +90,58 @@
                   <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                       <div class="form-group">
                           <label for="name">Name</label>
-                          <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                          <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required [(ngModel)]="createExpense.expence_by">
                           <div class="invalid-feedback">Name is required</div>
                       </div>
                   </div>
                   <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                       <div class="form-group">
-                          <label for="leaveType">Department</label>
-                          <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                          <label for="expense">Expense</label>
+                          <input type="text" class="form-control" id="expense" name="expense" placeholder="Enter leave type" required [(ngModel)]="createExpense.expense">
                       </div>
                   </div>
               </div>
               <div class="row">
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                     <div class="form-group">
-                        <label for="from">Role</label>
-                        <input type="date" class="form-control" id="from" placeholder="Enter your name" required>
+                        <label for="expence_date">Expence_Date</label>
+                        <input type="date" class="form-control" id="expence_date" name="expence_date" placeholder="Enter your name" required [(ngModel)]="createExpense.expence_date">
                         <div class="invalid-feedback">Name is required</div>
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <div class="form-group">
-                        <label for="to">Project</label>
-                        <input type="text" class="form-control" id="to" placeholder="Enter leave type" required>
+                        <label for="expence_amount">Expence_Amount</label>
+                        <input type="text" class="form-control" id="expence_amount" name="expence_amount" placeholder="Enter leave type" required [(ngModel)]="createExpense.expence_amount">
                     </div>
                 </div>
             </div>
             <div class="row">
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                   <div class="form-group">
-                      <label for="name">Mobile</label>
-                      <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                      <label for="paymentMode">PaymentMode</label>
+                      <input type="text" class="form-control" id="paymentMode" name="paymentMode" placeholder="Enter your name" required [(ngModel)]="createExpense.paymentMode">
                   </div>
               </div>
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <div class="form-group">
-                      <label for="leaveType">Email</label>
-                      <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                      <label for="paymentStatus">PaymentStatus</label>
+                      <input type="text" class="form-control" id="paymentStatus" name="paymentStatus" placeholder="Enter leave type" required [(ngModel)]="createExpense.paymentStatus">
                   </div>
               </div>
           </div>
+          <div class="row">
+            <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                <div class="form-group">
+                    <label for="paidTo">Paid_To</label>
+                    <input type="text" class="form-control" id="paidTo" name="paidTo" placeholder="Enter your name" required [(ngModel)]="createExpense.paidTo">
+                </div>
+            </div>
+        </div>
               </form>
             </div>
             <div class="ms-5 mb-3">
-              <button type="button" class="btn btn-danger">Send message</button>
+              <button type="button" class="btn btn-danger" (click)="createExpence()">Send message</button>
               <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>

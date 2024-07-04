@@ -36,24 +36,29 @@
                         <th>
                           <b>N</b>ame
                         </th>
+                        <th>Date</th>
                         <th>First In</th>
-                        <th>Break</th>
                         <th>Last Out</th>
+                        <th>Break</th>
                         <th>Total</th>
                         <th>Status</th>
                         <th>Shift</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Unity Pugh</td>
-                        <td>9958</td>
-                        <td>Curicó</td>
-                        <td>2005/02/11</td>
-                        <td>37%</td>
-                        <td>37%</td>
-                        <td>37%</td>
-                        <td>37%</td>
+                      <tr *ngFor="let attendance of employee">
+                        <td *ngIf="attendance.attedance.name && attendance.image!=undefined"><img class="rounded-circle" [src]="'data:image/png;base64,'+attendance.image" style="height: 30px;width: 30px;"></td>
+                        <td *ngIf="attendance.attedance.name">{{attendance.attedance.name}}</td>
+                        <td *ngIf="attendance.attedance.date">{{attendance.attedance.date | date}}</td>
+                        <td *ngIf="attendance.attedance.in">{{attendance.attedance.in}}</td>
+                        <td *ngIf="attendance.attedance.out">{{attendance.attedance.out}}</td>
+                        <td *ngIf="attendance.attedance.lunch_break">{{attendance.attedance.lunch_break}}</td>
+                        <td *ngIf="attendance.attedance.total">{{attendance.attedance.total}}</td>
+                        <td *ngIf="attendance.attedance.status" class="cdk-column-status" >
+                          <span *ngIf="attendance.attedance.status==='ABSENT'" class="badge badge-pill bg-danger text-white">ABSENT</span>
+                          <span *ngIf="attendance.attedance.status==='PRESENT'" class="badge badge-pill bg-success text-white">PRESENT</span>
+                      </td> 
+                        <td *ngIf="attendance.attedance.shift">{{attendance.attedance.shift}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -69,29 +74,97 @@
           </div>
         </section>
       </main>
-    
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
+      <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <div class="modal-header mt-2" style="border: none;">
+              <h5 class="modal-title ms-5" id="exampleModalLabel">New Leave Balance</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                  <input type="text" class="form-control" id="recipient-name">
+                <div class="row">
+                  <!-- <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                        <label for="Name">Name<span class="required">*</span></label>
+                        <select class="form-select form-control" id="Name" name="Name" [(ngModel)]="attendance.name">
+                            <option value="" selected>Select Employee</option>
+                            <option *ngFor="let xyz of employee_name" [value]="xyz.name">{{xyz.name}}</option>
+                        </select>
+                  </div> -->
+                  <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Emplyee" required [(ngModel)]="attendance.name">
+                    </div>
                 </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
+                  <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                      <div class="form-group">
+                          <label for="First_In">First_In</label>
+                          <input type="time" class="form-control" id="First_In" name="First_In" placeholder="Enter Previous leave" required [(ngModel)]="attendance.in">
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                    <div class="form-group">
+                        <label for="Out">Out</label>
+                        <input type="time" class="form-control" id="Out" name="Out" placeholder="Enter Current Leave" required [(ngModel)]="attendance.out">
+                        <div class="invalid-feedback">Name is required</div>
+                    </div>
                 </div>
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <div class="form-group">
+                        <label for="lunch_break">Last_Out</label>
+                        <input type="time" class="form-control" id="lunch_break" name="lunch_break" placeholder="Enter Total" required [(ngModel)]="attendance.lunch_break">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                  <div class="form-group">
+                      <label for="total">Total</label>
+                      <input type="time" class="form-control" id="total" name="total" placeholder="Enter Used" required [(ngModel)]="attendance.total">
+                  </div>
+              </div>
+              <!-- <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <div class="form-group">
+                      <label for="Accepted">Status</label>
+                      <input type="text" class="form-control" id="Accepted" name="Accepted" placeholder="Enter Accepted" required [(ngModel)]="attendance.status">
+                  </div>
+              </div> -->
+              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                <div class="form-group">
+                  <label for="Status">Status<span class="required">*</span></label>
+                  <select class="form-control" id="Status" name="Status" required [(ngModel)]="attendance.status">
+                    <option value="" selected >Select status</option>
+                      <option *ngFor="let st of status" value="{{st}}">{{st}}</option>
+                  </select>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <!-- <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                <div class="form-group">
+                    <label for="Rejected">Shift</label>
+                    <input type="text" class="form-control" id="Rejected" name="Rejected" placeholder="Enter Rejected" required [(ngModel)]="attendance.shift">
+                </div>
+            </div> -->
+            <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+              <div class="form-group">
+                <label for="shift">Shift<span class="required">*</span></label>
+                <select class="form-control" id="shift" name="shift" required [(ngModel)]="attendance.shift">
+                  <option value="" selected >Select status</option>
+                    <option *ngFor="let st of shift" value="{{st}}">{{st}}</option>
+                </select>
+              </div>
+            </div>
+        </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
+            <div class="ms-5 mb-3">
+              <button type="button" class="btn btn-danger" (click)="postAttendance()">Send message</button>
+              <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>
         </div>

@@ -4,7 +4,8 @@
       <section class="section">
         <div class="row">
           <div class="pagetitle">
-              <h1 class="float-start">Employees Task</h1>
+              <h1 class="float-start" *ngIf="userRole==='ADMIN'">Employees Task</h1>
+              <h1 *ngIf="userRole==='LEADER'" class="float-start">My Task</h1>
               <nav class="float-end">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -32,30 +33,41 @@
                 <table class="table datatable">
                   <thead>
                     <tr>
-                      <th>Image</th>
+                      <!-- <th>Image</th> -->
+                      <th>createdBy</th>
+                      <th *ngIf="userRole==='ADMIN'">Role</th>
                       <th>
-                        <b>N</b>ame
+                        Project
                       </th>
-                      <th>Employee_Id</th>
-                      <th>Deparment</th>
-                      <th>Role</th>
-                      <th>Email</th>
-                      <th>Salary</th>
-                      <th>Payslip</th>
+                      <th>Status</th>
+                      <th>Type</th>
+                      <th>Priority</th>
+                      <th>Date</th>
+                      <th>assign_To</th>
+                      <th>details</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Haviva Hernandez</td>
-                      <td>8136</td>
-                      <td>Suwałki</td>
-                      <td>2000/30/01</td>
-                      <td>16%</td>
-                      <td>16%</td>
-                      <td>16%</td>
-                      <td>16%</td>
-                      <td>16%</td>
+                    <tr *ngFor="let task of task">
+                      <!-- <td>{{}}</td> -->
+                      <td>{{task.createdBy}}</td>
+                      <td *ngIf="userRole==='ADMIN'">{{userRole}}</td>
+                      <td>{{task.project}}</td>
+                      <td>{{task.status}}</td>
+                      <td>{{task.type}}</td>
+                      <td>{{task.priority}}</td>
+                      <td>{{task.date | date}}</td>
+                      <td>{{task.assign_To}}</td>
+                      <td>{{task.details}}</td>
+                      <td class="d-flex">
+                        <button type="button" class="btn">
+                          <i class="bi bi-pencil-square text-primary"></i>
+                        </button>
+                        <button type="button" class="btn">
+                          <i class="bi bi-trash text-danger"></i>
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -76,59 +88,74 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header mt-2" style="border: none;">
-            <h5 class="modal-title ms-5" id="exampleModalLabel">New Leaves</h5>
+            <h5 class="modal-title ms-5" id="exampleModalLabel">Create Task</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form>
               <div class="row">
+    
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-                        <div class="invalid-feedback">Name is required</div>
-                    </div>
-                </div>
+                    <label for="Name">Project Name<span class="required">*</span></label>
+                    <input class="form-control" id="Name" name="Name" [(ngModel)]="creatTask.project">
+              </div>
+    
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <div class="form-group">
-                        <label for="leaveType">Department</label>
-                        <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                        <label for="Status">Status</label>
+                        <select class="form-select form-control" id="Status" name="Status" [(ngModel)]="creatTask.status">
+                          <option value="" selected>Select Employee</option>
+                          <option value="OPEN">OPEN</option>
+                          <option value="CLOSED">CLOSED</option>
+                      </select>
                     </div>
                 </div>
             </div>
             <div class="row">
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                   <div class="form-group">
-                      <label for="from">Role</label>
-                      <input type="date" class="form-control" id="from" placeholder="Enter your name" required>
+                      <label for="Deparment">Type</label>
+                      <input class="form-control" id="Deparment" name="Deparment" [(ngModel)]="creatTask.type">
                       <div class="invalid-feedback">Name is required</div>
                   </div>
               </div>
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <div class="form-group">
-                      <label for="to">Project</label>
-                      <input type="text" class="form-control" id="to" placeholder="Enter leave type" required>
+                      <label for="Role">Priority</label>
+                      <input type="text" class="form-control" id="Role" name="Role" [(ngModel)]="creatTask.priority">
                   </div>
               </div>
           </div>
           <div class="row">
-            <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+            <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5" *ngIf="userRole==='LEADER'">
                 <div class="form-group">
-                    <label for="name">Mobile</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                    <label for="Salary">assign_To</label>
+                    <select type="text" class="form-select form-control" id="Salary" name="Salary" placeholder="Enter your name" required [(ngModel)]="creatTask.assign_To">
+                    <option value="">Select member</option>
+                    <option *ngFor="let task of taskTo" value="{{task.name}}">{{task.name}}</option>  
+                    </select>
                 </div>
             </div>
+            <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5" *ngIf="userRole==='ADMIN'">
+              <div class="form-group">
+                  <label for="Salary">assign_To</label>
+                  <select type="text" class="select-form form-control" id="Salary" name="Salary" placeholder="Enter your name" required [(ngModel)]="creatTask.assign_To">
+                  <option  value="Select Team">Select Team</option>
+                  <option *ngFor="let task of taskTo" value="{{task.teamName}}">{{task.teamName}}</option>
+                  </select>
+              </div>
+          </div>
             <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                 <div class="form-group">
-                    <label for="leaveType">Email</label>
-                    <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                    <label for="Email">Details</label>
+                    <input type="text" class="form-control" id="Email" name="Email" [(ngModel)]="creatTask.details">
                 </div>
             </div>
         </div>
             </form>
           </div>
           <div class="ms-5 mb-3">
-            <button type="button" class="btn btn-danger">Send message</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="addTask()">Send message</button>
             <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
           </div>
         </div>

@@ -36,26 +36,29 @@
                       <th>
                         <b>N</b>ame
                       </th>
-                      <th>Employee_Id</th>
-                      <th>Deparment</th>
-                      <th>Role</th>
                       <th>Email</th>
-                      <th>Salary</th>
-                      <th>Payslip</th>
+                      <th>Mobile</th>
+                      <th>Date_Of_Birth</th>
+                      <th>Address</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Haviva Hernandez</td>
-                      <td>8136</td>
-                      <td>Suwałki</td>
-                      <td>2000/30/01</td>
-                      <td>16%</td>
-                      <td>16%</td>
-                      <td>16%</td>
-                      <td>16%</td>
-                      <td>16%</td>
+                    <tr *ngFor="let emp of employee">
+                      <td><img class="rounded-circle" *ngIf="emp.image" [src]="'data:image/png;base64,'+emp.image" style="height: 30px;width: 30px;"></td>
+                      <td>{{emp.name}}</td>
+                      <td>{{emp.email}}</td>
+                      <td>{{emp.phone_no}}</td>
+                      <td>{{emp.dateOfBirth | date}}</td>
+                      <td>{{emp.employe_address}}</td>
+                      <td class="d-flex align-items-center justify-content-between">
+                        <button type="button" class="btn">
+                          <i class="bi bi-pencil-square text-primary"></i>
+                        </button>
+                        <button type="button" class="btn">
+                          <i class="bi bi-trash text-danger"></i>
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>

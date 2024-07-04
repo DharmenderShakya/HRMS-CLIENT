@@ -1,1 +1,246 @@
-<p>my-project works!</p>
+<main id="main" class="main">
+    <!-- End Page Title -->
+    
+        <section class="section">
+          <div class="row">
+            <div class="pagetitle">
+                <h1 class="float-start">Employees Table</h1>
+                <nav class="float-end">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Tables</li>
+                    <li class="breadcrumb-item active">Data</li>
+                  </ol>
+                </nav>
+              </div>
+            <div class="col-lg-12">
+              <div class="datatable-top ms-0" style="background-color: #BCD5EE;">
+                <div class="datatable-search">
+                        <span><strong>Employee Salary</strong></span><input class="datatable-input ms-3 rounded" placeholder="Search..." type="search" title="Search within table">
+                    </div>
+                    <div class="d-flex">
+                      <button type="button" (click)="openModel()" class="btn btn-sm btn-primary rounded-pill" data-bs-toggle="modal" style="width: 2rem; height:2rem;"><i class="bi bi-plus-lg icon"></i></button>
+                        
+                        <button type="button" class="btn btn-sm btn-success rounded-pill" style="width: 2rem; height:2rem;"><i class="bi bi-arrow-clockwise icon"></i></button>
+                     
+                        <a href="#"><img src="assets/img/xlsx.png" alt="sdfghjk" style="height: 30px; width: auto;"></a>
+                        </div>
+            </div>
+              <div class="card">
+                <div class="card-body">
+                  <!-- Table with stripped rows -->
+                  <!-- <table class="table datatable table-fixed">
+                    <thead>
+                      <tr>
+                        <th *ngIf="role!='CLIENT'">Members</th>
+                        <th *ngIf="role!='CLIENT'">Client Name</th>
+                        <th>Project Name</th>
+                        <th *ngIf="role==='CLIENT'">Project Type</th>
+                        <th *ngIf="role==='CLIENT'">Open Task</th>
+                        <th>Leader</th>
+                        <th *ngIf="role==='CLIENT'">Start Date</th>
+                        <th *ngIf="role==='CLIENT'">Last Modified</th>
+                        <th *ngIf="role!='CLIENT'">End Date</th>
+                        <th *ngIf="role!='CLIENT'">Create Date</th>
+                        <th *ngIf="role==='CLIENT'">DeadLine</th>
+                        <th *ngIf="role!='CLIENT'">Priority</th>
+                        <th *ngIf="role=='CLIENT'">Progress</th>
+                        <th *ngIf="role!='CLIENT'">Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let team of teamData">
+                        <td>
+                          <span class="float-end" *ngFor="let emp of team.employee; let i = index">
+                            <ul class="list-unstyled order-list" style="position: relative; margin-left:-155px; margin-top:-25px;">
+                              <li class="avatar avatar-sm" [ngStyle]="{'position': 'absolute', 'left': (13-i*9) + 'px', 'top': '22px', 'z-index': (3-i)}"><img [src]="'data:image/png;base64,'+emp.image" alt="user" class="rounded-circle" style="width: 40px; height: 40px;"></li>
+                              <li class="avatar avatar-sm" style="position: absolute; left: 40px; top: 30px; z-index: 4;" ><span class="badge bg-secondary">{{i-1}}+</span></li>
+                            </ul>
+                          </span>
+                        </td>
+                        <td *ngFor="let pro of team.employee.project">{{pro.startDate}}</td>
+                        <td *ngFor="let pro of team.employee.project">{{pro.endDate}}</td>
+                        <td *ngFor="let pro of team.employee.project">{{pro.project_Deparment}}</td>
+                        <td *ngFor="let pro of team.employee.project">{{pro.priority}}</td>
+                        <td *ngFor="let pro of team.employee.project">{{pro.client}}</td>
+                        <td *ngFor="let pro of team.employee.project">{{pro.status}}</td>
+
+
+                        <td *ngIf="role==='CLIENT'">{{team.projectName}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.type}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.openTask}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.leadName}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.createDate}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.lastModify}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.status_By_Client}}</td>
+
+
+                        <td *ngFor="let pro of team.project" class="d-flex">
+                          <button type="button" class="btn">
+                            <i class="bi bi-pencil-square text-primary"></i>
+                          </button>
+                          <button type="button" class="btn">
+                            <i class="bi bi-trash text-danger"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table> -->
+
+                  <table class="table datatable table-fixed">
+                    <thead>
+                      <tr>
+                        <th *ngIf="role!='CLIENT'">Members</th>
+                        <th *ngIf="role!='CLIENT'">Client Name</th>
+                        <th>Project Name</th>
+                        <th *ngIf="role==='CLIENT'">Project Type</th>
+                        <th *ngIf="role==='CLIENT'">Open Task</th>
+                        <th>Leader</th>
+                        <th *ngIf="role==='CLIENT'">Start Date</th>
+                        <th *ngIf="role==='CLIENT'">Last Modified</th>
+                        <th *ngIf="role!='CLIENT'">End Date</th>
+                        <th *ngIf="role!='CLIENT'">Create Date</th>
+                        <th *ngIf="role==='CLIENT'">DeadLine</th>
+                        <th *ngIf="role!='CLIENT'">Priority</th>
+                        <th *ngIf="role!='CLIENT'">Progress</th>
+                        <th *ngIf="role==='CLIENT' || role!='CLIENT'">Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngIf="role!='CLIENT'">
+                      <tr *ngFor="let team of allTeam">
+                        <td *ngFor="let emp of team.employee[0].project">
+                          <span class="float-end" *ngFor="let emp of team.employee; let i = index">
+                            <ul class="list-unstyled order-list" style="position: relative; margin-left:-90px; margin-top:-28px;">
+                              <li class="avatar avatar-sm" [ngStyle]="{'position': 'absolute', 'left': (13-i*9) + 'px', 'top': '22px', 'z-index': (3-i)}"><img [src]="'data:image/png;base64,'+emp.image" alt="user" class="rounded-circle" style="width: 35px; height: 35px;"></li>
+                              <li class="avatar avatar-sm" style="position: absolute; left: 40px; top: 30px; z-index: 4;" ><span class="badge bg-secondary">{{i-1}}+</span></li>
+                            </ul>
+                          </span>
+                        </td>
+                        <td *ngFor="let emp of team.employee[0].project">
+                          <span >{{emp.client}}</span>
+                        </td>
+                        <td *ngFor="let emp of team.employee[0].project">{{emp.name}}</td>
+                        <td *ngFor="let emp of team.employee[0].project">{{emp.teamLeader}}</td>
+                        <td *ngFor="let emp of team.employee[0].project">{{emp.endDate}}</td>
+                        <td *ngFor="let emp of team.employee[0].project">{{emp.startDate}}</td>
+                        <td *ngFor="let emp of team.employee[0].project">{{emp.priority}}</td>
+                        <td *ngFor="let emp of team.employee[0].project">{{emp.status}}</td>
+                      </tr>
+                    </ng-container>
+                      <ng-container *ngIf="role==='CLIENT'">
+                        <tr *ngFor="let team of allTeam">
+                          <td *ngIf="role==='CLIENT'">{{team.projectName}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.type}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.openTask}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.leadName}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.createDate}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.lastModify}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.lastModify}}</td>
+                        <td *ngIf="role==='CLIENT'">{{team.status_By_Client}}</td>
+                          <td class="d-flex">
+                            <button type="button" class="btn">
+                              <i class="bi bi-pencil-square text-primary"></i>
+                            </button>
+                            <button type="button" class="btn">
+                              <i class="bi bi-trash text-danger"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+
+                  <!-- End Table with stripped rows -->
+                  <div class="datatable-bottom">
+        <div class="datatable-info">Showing 1 to 10 of 100 entries</div>
+        <nav class="datatable-pagination"><ul class="datatable-pagination-list"><li class="datatable-pagination-list-item datatable-hidden datatable-disabled"><button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">‹</button></li><li class="datatable-pagination-list-item datatable-active"><button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">1</button></li><li class="datatable-pagination-list-item"><button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">2</button></li><li class="datatable-pagination-list-item"><button data-page="3" class="datatable-pagination-list-item-link" aria-label="Page 3">3</button></li><li class="datatable-pagination-list-item"><button data-page="4" class="datatable-pagination-list-item-link" aria-label="Page 4">4</button></li><li class="datatable-pagination-list-item"><button data-page="5" class="datatable-pagination-list-item-link" aria-label="Page 5">5</button></li><li class="datatable-pagination-list-item"><button data-page="6" class="datatable-pagination-list-item-link" aria-label="Page 6">6</button></li><li class="datatable-pagination-list-item"><button data-page="7" class="datatable-pagination-list-item-link" aria-label="Page 7">7</button></li><li class="datatable-pagination-list-item datatable-ellipsis datatable-disabled"><button class="datatable-pagination-list-item-link">…</button></li><li class="datatable-pagination-list-item"><button data-page="10" class="datatable-pagination-list-item-link" aria-label="Page 10">10</button></li><li class="datatable-pagination-list-item"><button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">›</button></li></ul></nav>
+    </div>
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </section>
+      </main>
+      <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header mt-2" style="border: none;">
+              <h5 class="modal-title ms-5" id="exampleModalLabel">New Estimates</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="row">
+                  <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                      <div class="form-group">
+                          <label for="name">Project</label>
+                          <input type="text" class="form-control" id="name" placeholder="Enter Client Name" required [(ngModel)]="createProject.projectName">
+                          <div class="invalid-feedback">Name is required</div>
+                      </div>
+                  </div>
+                  <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                      <div class="form-group">
+                          <label for="type">Project Type</label>
+                          <input type="date" class="form-control" id="type" name="type" aria-invalid="" placeholder="Enter leave type" required [(ngModel)]="createProject.type">
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                    <div class="form-group">
+                        <label for="Open">Open Task</label>
+                        <input type="text" class="form-control" id="Open" name="Open" placeholder="Enter your name" required [(ngModel)]="createProject.openTask">
+                        <div class="invalid-feedback">Name is required</div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <div class="form-group">
+                        <label for="Leader">Leader</label>
+                        <input type="text" class="form-control" id="Leader" name="Leader" placeholder="Country Name" required [(ngModel)]="createProject.leadName">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                  <div class="form-group">
+                      <label for="Status">Status</label>
+                      <input type="text" class="form-control" id="Status" name="Status" placeholder="Enter Amount here" required [(ngModel)]="createProject.status_By_Client">
+                  </div>
+              </div>
+              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <div class="form-group">
+                      <label for="leaveType">Last Modify</label>
+                      <input type="text" class="form-control" id="leaveType" placeholder="Project Status" required [(ngModel)]="createProject.lastModify">
+                  </div>
+              </div>
+              
+          </div>
+          <div class="row">
+            <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5" >
+              <div class="form-group">
+                  <label for="Details">Details</label>
+                  <input type="text" class="form-control" id="Details" name="Details" placeholder="Project Status" required [(ngModel)]="createProject.details">
+              </div>
+          </div>
+          <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <div class="form-group">
+                <label for="leaveType">Create Date</label>
+                <input type="text" class="form-control" id="leaveType" placeholder="Project Status" required [(ngModel)]="createProject.createDate">
+            </div>
+        </div>
+        </div>
+              </form>
+            </div>
+            <div class="ms-5 mb-3">
+              <button type="button" class="btn btn-danger">Send message</button>
+              <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      

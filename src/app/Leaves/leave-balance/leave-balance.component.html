@@ -47,16 +47,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Haviva Hernandez</td>
-                      <td>8136</td>
-                      <td>Suwałki</td>
-                      <td>2000/30/01</td>
-                      <td>16%</td>
-                      <td>16%</td>
-                      <td>16%</td>
-                      <td>16%</td>
-                      <td>16%</td>
+                    <tr *ngFor="let balance of allLeaveBalence">
+                      <td><img class="rounded-circle" *ngIf="balance.image" [src]="'data:image/png;base64,'+balance.image" style="height: 30px;width: 30px;"></td>
+                      <td>{{balance.balence.name}}</td>
+                      <td>{{balance.balence.previous}}</td>
+                      <td>{{balance.balence.current}}</td>
+                      <td>{{balance.balence.total}}</td>
+                      <td>{{balance.balence.used}}</td>
+                      <td>{{balance.balence.accepted}}</td>
+                      <td>{{balance.balence.rejected}}</td>
+                      <td>{{balance.balence.expired}}</td>
+                      <td>{{balance.balence.carry}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -77,59 +78,86 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header mt-2" style="border: none;">
-            <h5 class="modal-title ms-5" id="exampleModalLabel">New Leaves</h5>
+            <h5 class="modal-title ms-5" id="exampleModalLabel">New Leave Balance</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form>
               <div class="row">
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
                         <div class="invalid-feedback">Name is required</div>
-                    </div>
+                    </div> -->
+                      <label for="Name">Name<span class="required">*</span></label>
+                      <select class="form-select form-control" id="Name" name="Name" [(ngModel)]="leaveBalence.name">
+                          <option selected>Select Employee</option>
+                          <option *ngFor="let emp of employee">{{emp.name}}</option>
+                      </select>
                 </div>
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <div class="form-group">
-                        <label for="leaveType">Department</label>
-                        <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                        <label for="Previous">Previous</label>
+                        <input type="number" class="form-control" id="Previous" name="Previous" placeholder="Enter Previous leave" required [(ngModel)]="leaveBalence.previous">
                     </div>
                 </div>
             </div>
             <div class="row">
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                   <div class="form-group">
-                      <label for="from">Role</label>
-                      <input type="date" class="form-control" id="from" placeholder="Enter your name" required>
+                      <label for="Current">Current</label>
+                      <input type="number" class="form-control" id="Current" name="Current" placeholder="Enter Current Leave" required [(ngModel)]="leaveBalence.current">
                       <div class="invalid-feedback">Name is required</div>
                   </div>
               </div>
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <div class="form-group">
-                      <label for="to">Project</label>
-                      <input type="text" class="form-control" id="to" placeholder="Enter leave type" required>
+                      <label for="Total">Total</label>
+                      <input type="number" class="form-control" id="Total" name="Total" placeholder="Enter Total" required [(ngModel)]="leaveBalence.total">
                   </div>
               </div>
           </div>
           <div class="row">
             <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                 <div class="form-group">
-                    <label for="name">Mobile</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                    <label for="Used">Used</label>
+                    <input type="number" class="form-control" id="Used" name="Used" placeholder="Enter Used" required [(ngModel)]="leaveBalence.used">
                 </div>
             </div>
             <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                 <div class="form-group">
-                    <label for="leaveType">Email</label>
-                    <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                    <label for="Accepted">Accepted</label>
+                    <input type="number" class="form-control" id="Accepted" name="Accepted" placeholder="Enter Accepted" required [(ngModel)]="leaveBalence.accepted">
                 </div>
             </div>
         </div>
+        <div class="row">
+          <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+              <div class="form-group">
+                  <label for="Rejected">Rejected</label>
+                  <input type="number" class="form-control" id="Rejected" name="Rejected" placeholder="Enter Rejected" required [(ngModel)]="leaveBalence.rejected">
+              </div>
+          </div>
+          <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+              <div class="form-group">
+                  <label for="Expired">Expired</label>
+                  <input type="number" class="form-control" id="Expired" name="Expired" placeholder="Enter Expired Leave" required [(ngModel)]="leaveBalence.expired">
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+            <div class="form-group">
+                <label for="carry">Carry Over</label>
+                <input type="number" class="form-control" id="carry" name="carry" placeholder="Enter Carry Over" required [(ngModel)]="leaveBalence.carry">
+            </div>
+        </div>
+    </div>
             </form>
           </div>
           <div class="ms-5 mb-3">
-            <button type="button" class="btn btn-danger">Send message</button>
+            <button type="button" class="btn btn-danger" (click)="postLeaveBalence()">Send message</button>
             <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
           </div>
         </div>

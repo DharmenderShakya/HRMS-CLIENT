@@ -32,7 +32,6 @@
                   <table class="table datatable mt-4">
                     <thead>
                       <tr>
-                        <th>Image</th>
                         <th>
                           Leave Name
                         </th>
@@ -44,14 +43,20 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Unity Pugh</td>
-                        <td>9958</td>
-                        <td>Curicó</td>
-                        <td>2005/02/11</td>
-                        <td>37%</td>
-                        <td>37%</td>
-                        <td>37%</td>
+                      <tr *ngFor="let leave of leaveType">
+                        <td>{{leave.name}}</td>
+                        <td>{{leave.type}}</td>
+                        <td>{{leave.unit}}</td>
+                        <td>{{leave.status}}</td>
+                        <td>{{leave.note}}</td>
+                        <td class="d-flex justify-content-center mt-3">
+                          <button type="button" class="btn btn-accent">
+                            <i class="bi bi-pencil-square text-primary"></i>
+                          </button>
+                          <button type="button" class="btn btn-accent">
+                            <i class="bi bi-trash text-danger"></i>
+                          </button>
+                        </td>
                       </tr>
                     </tbody>
                   </table>

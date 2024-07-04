@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,11 @@ import { LoginService } from '../login.service';
 })
 export class LoginComponent implements OnInit {
   
-  
+  user={
+    userName:'',
+    password:''
+  }
+
     userName:string="";
     password:string="";
     role:string=''
@@ -49,10 +53,11 @@ export class LoginComponent implements OnInit {
     this.role="CLIENT"
   }
 
-  constructor(private dataService: LoginService,private router:Router) { 
+  constructor(private dataService: LoginService,private router:Router,private toastService:ToastrService) { 
   }
 
   ngOnInit(): void {
+    
   }
   sendDataForAdmin() {
     this.dataService.setSharedData(this.admin,this.employee,this.client,this.role);
@@ -67,19 +72,40 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // sendDataForEmployee() {
-  //   const admin =false
-  //   const employee =true
-  //   const client =false// Your data
-  //   const role ='EMP'
-  //   this.dataService.setSharedData(admin,employee,client,role);
-  // }
-  // sendDataClient() {
-  //   const admin =false
-  //   const employee =false
-  //   const client =true// Your data
-  //   const role='CLIENT'
-  //   this.dataService.setSharedData(admin,employee,client,role);
-  // }
-
+loginData(){
+  this.dataService.generatTocken(this.user).subscribe((token)=>{
+    localStorage.setItem('token',token.accessToken);
+    console.log("the tocken"+token);
+    this.dataService.setRole(token.roles[0]);
+    this.dataService.setUser(token.username);
+    
+    if (token.roles[0]=='ADMIN') {
+      this.router.navigate(['deshboard/deshboard']);
+      this.showSuccess();
+    }
+    if(token.roles[0].match("EMPLOYEE") || token.roles[0].match("LEADER")){
+      this.router.navigate(['deshboard/empdesh']);
+    }
+    if(token.roles[0].match("CLIENT")){
+      this.router.navigate(['deshboard/clientdesh']);
+    }
+    console.log("This is the user name",this.dataService.getUser());
+  },(error)=>{
+    this.toastService.error('invalid credentials','',{
+      timeOut: 1000,
+      closeButton: true,
+      positionClass:'toast-top-center',
+    });
+  })
+}
+showSuccess() {
+  this.toastService.success('login successfully', '',
+    {
+      timeOut: 2000,
+      closeButton: true,
+      positionClass:'toast-top-center',
+    
+    }
+  );
+}
 }

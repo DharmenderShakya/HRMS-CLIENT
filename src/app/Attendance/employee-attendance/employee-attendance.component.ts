@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./employee-attendance.component.css']
 })
 export class EmployeeAttendanceComponent {
-
+  isVisibleStatus='ABSENT';
 }

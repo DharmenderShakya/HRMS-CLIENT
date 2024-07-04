@@ -16,18 +16,18 @@
         <h4 class="fw-bold ms-3 mt-3">Contects</h4>
         <div class="card-body">
         <div class="row">
-          <div class="col-lg-4 col-sm-6">
+          <div class="col-lg-4 col-sm-6" *ngFor="let emp of allcontect">
             <div class="card border-apply ms-4 mt-4">
               <div class="m-b-20">
                 <div class="contact-grid">
                   <div class="profile-header bg-purple-dark bg-primary">
-                    <div class="user-name text-center text-light"><h4 style="padding-top: 10px;">Pooja Patel</h4></div>
-                    <div class="name-center text-center text-light"> <small class="mb-5">General Manager</small></div>
-                    <img src="assets\img\messages-1.jpg" alt=""class="rounded-circle" style="margin-left: 120px;position: relative; top: 30px;">
+                    <div class="user-name text-center text-light"><h4 style="padding-top: 10px;">{{emp.name}}</h4></div>
+                    <div class="name-center text-center text-light"> <small class="mb-5">{{emp.employee_role}}</small></div>
+                    <img class="rounded-circle" *ngIf="emp.image" [src]="'data:image/png;base64,'+emp.image" style="height: 70px;width: 70px; margin-left: 135px;position: relative; top: 30px;">
                   </div>
-                  <p class="text-center mt-5">A-103, shyam gokul flats, Mahatma Road <br>Mumbai </p>
+                  <p class="text-center mt-5">{{emp.employe_address}}</p>
                   <div class="text-center">
-                    <span class="phone"><i class="bi bi-telephone-fill"><span class="ms-2">264-625-2583</span></i></span>
+                    <span class="phone"><i class="bi bi-telephone-fill"><span class="ms-2">{{emp.phone_no}}</span></i></span>
                   </div>
                   <div class="profile-userbuttons d-flex justify-content-center">
                     <button class="btn btn-primary mb-3 mt-3">Read More</button>
@@ -36,148 +36,7 @@
               </div>
             </div>
         </div>
-        <div class="col-lg-4 col-sm-6">
-          <div class="card border-apply ms-4 mt-4">
-            <div class="m-b-20">
-              <div class="contact-grid">
-                <div class="profile-header bg-purple-dark bg-primary">
-                  <div class="user-name text-center text-light"><h4 style="padding-top: 10px;">Pooja Patel</h4></div>
-                  <div class="name-center text-center text-light"> <small class="mb-5">General Manager</small></div>
-                  <img src="assets\img\messages-1.jpg" alt=""class="rounded-circle" style="margin-left: 120px;position: relative; top: 30px;">
-                </div>
-                <p class="text-center mt-5">A-103, shyam gokul flats, Mahatma Road <br>Mumbai </p>
-                <div class="text-center">
-                  <span class="phone"><i class="bi bi-telephone-fill"><span class="ms-2">264-625-2583</span></i></span>
-                </div>
-                <div class="profile-userbuttons d-flex justify-content-center">
-                  <button class="btn btn-primary mb-3 mt-3">Read More</button>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <div class="card border-apply ms-4 mt-4">
-          <div class="m-b-20">
-            <div class="contact-grid">
-              <div class="profile-header bg-purple-dark bg-primary">
-                <div class="user-name text-center text-light"><h4 style="padding-top: 10px;">Pooja Patel</h4></div>
-                <div class="name-center text-center text-light"> <small class="mb-5">General Manager</small></div>
-                <img src="assets\img\messages-1.jpg" alt=""class="rounded-circle" style="margin-left: 120px;position: relative; top: 30px;">
-              </div>
-              <p class="text-center mt-5">A-103, shyam gokul flats, Mahatma Road <br>Mumbai </p>
-              <div class="text-center">
-                <span class="phone"><i class="bi bi-telephone-fill"><span class="ms-2">264-625-2583</span></i></span>
-              </div>
-              <div class="profile-userbuttons d-flex justify-content-center">
-                <button class="btn btn-primary mb-3 mt-3">Read More</button>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <div class="col-lg-4 col-sm-6">
-      <div class="card border-apply ms-4 mt-4">
-        <div class="m-b-20">
-          <div class="contact-grid">
-            <div class="profile-header bg-purple-dark bg-primary">
-              <div class="user-name text-center text-light"><h4 style="padding-top: 10px;">Pooja Patel</h4></div>
-              <div class="name-center text-center text-light"> <small class="mb-5">General Manager</small></div>
-              <img src="assets\img\messages-1.jpg" alt=""class="rounded-circle" style="margin-left: 120px;position: relative; top: 30px;">
-            </div>
-            <p class="text-center mt-5">A-103, shyam gokul flats, Mahatma Road <br>Mumbai </p>
-            <div class="text-center">
-              <span class="phone"><i class="bi bi-telephone-fill"><span class="ms-2">264-625-2583</span></i></span>
-            </div>
-            <div class="profile-userbuttons d-flex justify-content-center">
-              <button class="btn btn-primary mb-3 mt-3">Read More</button>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-
-  <div class="col-lg-4 col-sm-6">
-    <div class="card border-apply ms-4 mt-4">
-      <div class="m-b-20">
-        <div class="contact-grid">
-          <div class="profile-header bg-purple-dark bg-primary">
-            <div class="user-name text-center text-light"><h4 style="padding-top: 10px;">Pooja Patel</h4></div>
-            <div class="name-center text-center text-light"> <small class="mb-5">General Manager</small></div>
-            <img src="assets\img\messages-1.jpg" alt=""class="rounded-circle" style="margin-left: 120px;position: relative; top: 30px;">
-          </div>
-          <p class="text-center mt-5">A-103, shyam gokul flats, Mahatma Road <br>Mumbai </p>
-          <div class="text-center">
-            <span class="phone"><i class="bi bi-telephone-fill"><span class="ms-2">264-625-2583</span></i></span>
-          </div>
-          <div class="profile-userbuttons d-flex justify-content-center">
-            <button class="btn btn-primary mb-3 mt-3">Read More</button>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
-<div class="col-lg-4 col-sm-6">
-  <div class="card border-apply ms-4 mt-4">
-    <div class="m-b-20">
-      <div class="contact-grid">
-        <div class="profile-header bg-purple-dark bg-primary">
-          <div class="user-name text-center text-light"><h4 style="padding-top: 10px;">Pooja Patel</h4></div>
-          <div class="name-center text-center text-light"> <small class="mb-5">General Manager</small></div>
-          <img src="assets\img\messages-1.jpg" alt=""class="rounded-circle" style="margin-left: 120px;position: relative; top: 30px;">
-        </div>
-        <p class="text-center mt-5">A-103, shyam gokul flats, Mahatma Road <br>Mumbai </p>
-        <div class="text-center">
-          <span class="phone"><i class="bi bi-telephone-fill"><span class="ms-2">264-625-2583</span></i></span>
-        </div>
-        <div class="profile-userbuttons d-flex justify-content-center">
-          <button class="btn btn-primary mb-3 mt-3">Read More</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="col-lg-4 col-sm-6">
-  <div class="card border-apply ms-4 mt-4">
-    <div class="m-b-20">
-      <div class="contact-grid">
-        <div class="profile-header bg-purple-dark bg-primary">
-          <div class="user-name text-center text-light"><h4 style="padding-top: 10px;">Pooja Patel</h4></div>
-          <div class="name-center text-center text-light"> <small class="mb-5">General Manager</small></div>
-          <img src="assets\img\messages-1.jpg" alt=""class="rounded-circle" style="margin-left: 120px;position: relative; top: 30px;">
-        </div>
-        <p class="text-center mt-5">A-103, shyam gokul flats, Mahatma Road <br>Mumbai </p>
-        <div class="text-center">
-          <span class="phone"><i class="bi bi-telephone-fill"><span class="ms-2">264-625-2583</span></i></span>
-        </div>
-        <div class="profile-userbuttons d-flex justify-content-center">
-          <button class="btn btn-primary mb-3 mt-3">Read More</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="col-lg-4 col-sm-6">
-  <div class="card border-apply ms-4 mt-4">
-    <div class="m-b-20">
-      <div class="contact-grid">
-        <div class="profile-header bg-purple-dark bg-primary">
-          <div class="user-name text-center text-light"><h4 style="padding-top: 10px;">Pooja Patel</h4></div>
-          <div class="name-center text-center text-light"> <small class="mb-5">General Manager</small></div>
-          <img src="assets\img\messages-1.jpg" alt=""class="rounded-circle" style="margin-left: 120px;position: relative; top: 30px;">
-        </div>
-        <p class="text-center mt-5">A-103, shyam gokul flats, Mahatma Road <br>Mumbai </p>
-        <div class="text-center">
-          <span class="phone"><i class="bi bi-telephone-fill"><span class="ms-2">264-625-2583</span></i></span>
-        </div>
-        <div class="profile-userbuttons d-flex justify-content-center">
-          <button class="btn btn-primary mb-3 mt-3">Read More</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        
         </div>
           
         </div>

@@ -1,13 +1,31 @@
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="list-group-item sidebar-user-panel">
+      <div class="ms-5 mb-3 mt-3">
+        <div>
+          <img *ngIf="image" [src]="'data:image/png;base64,'+image" style="height: 80px;width: 80px; border-radius: 10px;">
+        </div>
+        <div class="flex-grow" style="margin-left: 20px; margin-top: 10px;">
+          <div class="sidebar-userpic-name fw-bold">{{name}}</div>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" routerLink="/">
+        {{role}}
+      </a>
+    </li>
+
     <li class="nav-item" *ngIf="role === 'ADMIN'">
       <a class="nav-link collapsed" href="#" routerLink="/deshboard/deshboard">
         <i class="bi bi-display"></i>
         Dashboard
       </a>
     </li>
-    <li class="nav-item" *ngIf="role === 'EMPLOYEE'">
+    <li class="nav-item" *ngIf="role === 'EMPLOYEE' || role === 'LEADER'">
       <a class="nav-link collapsed" href="#" routerLink="/deshboard/empdesh">
         <i class="bi bi-display"></i>
         Dashboard
@@ -15,7 +33,7 @@
     </li>
     
     <li class="nav-item" *ngIf="role === 'CLIENT'">
-      <a class="nav-link collapsed" href="#" routerLink="/deshboard/empdesh">
+      <a class="nav-link collapsed" href="#" routerLink="/deshboard/clientdesh">
         <i class="bi bi-display"></i>
         Dashboard
       </a>
@@ -196,7 +214,7 @@
       </a>
       <ul id="icons-Project" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="icons-bootstrap.html" routerLink="clientproject">
+          <a href="icons-bootstrap.html" routerLink="myproject">
              <span>Project</span>
           </a>
         </li>
@@ -231,21 +249,21 @@
       </ul>
     </li><!-- End Icons Nav -->
 
-    <li class="nav-item" *ngIf="role === 'EMPLOYEE'">
+    <li class="nav-item" *ngIf="role === 'EMPLOYEE' || role === 'LEADER'">
       <a class="nav-link collapsed" href="index.html">
         <i class="bi bi-bar-chart"></i>
         <span><a href="" routerLink="allLeaveRequest">MyLeave</a></span>
       </a>
     </li>
 
-    <li class="nav-item"*ngIf="role === 'EMPLOYEE'">
+    <li class="nav-item"*ngIf="role === 'EMPLOYEE' || role === 'LEADER'">
       <a class="nav-link collapsed" href="index.html">
         <i class="bi bi-clock"></i>
         <span><a href="" routerLink="todayAttendance">Attendance</a></span>
       </a>
     </li>
 
-    <li class="nav-item" *ngIf="role === 'EMPLOYEE'">
+    <li class="nav-item" *ngIf="role === 'EMPLOYEE' || role === 'LEADER'">
       <a class="nav-link collapsed" href="index.html">
         <i class="bi bi-kanban"></i>
         <span><a href="" routerLink="myproject">MyProject</a></span>
@@ -253,38 +271,38 @@
     </li>
     
 
-    <li class="nav-item" *ngIf="role === 'EMPLOYEE'">
-      <a class="nav-link collapsed" href="index.html">
+    <li class="nav-item" *ngIf="role === 'EMPLOYEE' || role === 'LEADER'">
+      <a class="nav-link collapsed">
         <i class="bi bi-question-circle"></i>
-        <span><a href="" routerLink="mytask">MyTask</a></span>
+        <span><a routerLink="task">MyTask</a></span>
       </a>
     </li>
 
-    <li class="nav-item" *ngIf="role === 'EMPLOYEE'">
-      <a class="nav-link collapsed" href="index.html">
+    <li class="nav-item" *ngIf="role === 'EMPLOYEE' || role === 'LEADER'">
+      <a class="nav-link collapsed">
         <i class="bi bi-people"></i>
-        <span><a href="" routerLink="myteam">MyTeam</a></span>
+        <span><a routerLink="myteam">MyTeam</a></span>
       </a>
     </li>
 
     <li class="nav-item" *ngIf="role === 'CLIENT'">
-      <a class="nav-link collapsed" href="index.html">
-        <i class="bi bi-receipt"></i>
-        <span><a href="" routerLink="billing"></a>Billing</span>
+      <a class="nav-link collapsed">
+        <i class="bi bi-people"></i>
+        <span><a routerLink="billing">Billing</a></span>
       </a>
     </li>
 
     <li class="nav-item" *ngIf="role === 'CLIENT'">
-      <a class="nav-link collapsed" href="index.html">
+      <a class="nav-link collapsed">
         <i class="bi bi-chat-left"></i>
-        <span><a href="" routerLink="chat"></a>Chat</span>
+        <span><a href="" routerLink="chat">Chat</a></span>
       </a>
     </li>
 
     <li class="nav-item" *ngIf="role === 'CLIENT'">
-      <a class="nav-link collapsed" href="index.html">
+      <a class="nav-link collapsed">
         <i class="bi bi-gear"></i>
-        <span><a href="" routerLink="chat"></a>Setting</span>
+        <span><a href="" routerLink="chat">Setting</a></span>
       </a>
     </li>
 
@@ -299,6 +317,12 @@
       <a class="nav-link collapsed" href="#" routerLink="leaders">
         <i class="bi bi-shield-check"></i>
         <span>Leaders</span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
+      <a class="nav-link collapsed" href="#" routerLink="team">
+        <i class="bi bi-shield-check"></i>
+        <span>Team</span>
       </a>
     </li>
 
@@ -329,11 +353,6 @@
         <li>
           <a href="components-alerts.html" routerLink="joblist">
              <span>Job List</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-accordion.html" routerLink="resume">
-             <span>Resume</span>
           </a>
         </li>
         <li>
@@ -368,9 +387,9 @@
       </ul>
     </li><!-- End Components Nav -->
 
-    <li class="nav-heading" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'">Apps</li>
+    <li class="nav-heading" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE' || role === 'LEADER'">Apps</li>
 
-    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'">
+    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE' || role === 'LEADER'">
       <a class="nav-link collapsed" href="users-profile.html" routerLink="calender">
         <i class="bi bi-calendar"></i>
         <span>Calender</span>
@@ -384,21 +403,21 @@
       </a>
     </li><!-- End F.A.Q Page Nav -->
 
-    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'">
+    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE' || role === 'LEADER' ">
       <a class="nav-link collapsed" href="pages-contact.html" routerLink="contect">
         <i class="bi bi-phone"></i>
         <span>Contacts</span>
       </a>
     </li><!-- End Contact Page Nav -->
 
-    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'">
+    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE' || role === 'LEADER'">
       <a class="nav-link collapsed" href="pages-register.html" routerLink="emailcompose">
         <i class="bi bi-mailbox"></i>
         <span>Email</span>
       </a>
     </li><!-- End Register Page Nav -->
 
-    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'">
+    <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'EMPLOYEE' || role === 'LEADER'">
       <a class="nav-link collapsed" data-bs-target="#more-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-grid-3x3"></i><span>More Apps</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -413,7 +432,7 @@
              <span>Contact Grid</span>
           </a>
         </li>
-        <li>
+        <li *ngIf="role === 'CLIENT'">
           <a href="components-accordion.html" routerLink="ticketsupport">
              <span>Support</span>
           </a>
@@ -421,7 +440,7 @@
       </ul>
     </li>
 
-    <li class="nav-item" *ngIf="role === 'CLIENT' || role === 'EMPLOYEE' || role === 'ADMIN'">
+    <li class="nav-item" *ngIf="role === 'CLIENT' || role === 'EMPLOYEE' || role === 'ADMIN' || role === 'LEADER'">
       <a class="nav-link collapsed" href="index.html">
         <i class="bi bi-power"></i>
         <span><a href="" routerLink="chat"></a>Logout</span>

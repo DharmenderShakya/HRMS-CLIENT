@@ -26,36 +26,45 @@
                             <a href="#"><img src="assets/img/xlsx.png" alt="sdfghjk" style="height: 30px; width: auto;"></a>
                             </div>
                 </div>
-              <div class="card" style="border-radius: 0;">
+              <div class="card">
                 <div class="card-body">
                   <!-- Table with stripped rows -->
                   <table class="table datatable">
                     <thead>
                       <tr>
-                        <th>Image</th>
+                        <!-- <th>Image</th> -->
                         <th>
                           <b>N</b>ame
                         </th>
-                        <th>Employee_Id</th>
+                        <th>Email</th>
                         <th>Deparment</th>
                         <th>Role</th>
-                        <th>Email</th>
                         <th>Salary</th>
-                        <th>Payslip</th>
+                        <th>Status</th>
+                        <th>PaySlip</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Haviva Hernandez</td>
-                        <td>8136</td>
-                        <td>Suwałki</td>
-                        <td>2000/30/01</td>
-                        <td>16%</td>
-                        <td>16%</td>
-                        <td>16%</td>
-                        <td>16%</td>
-                        <td>16%</td>
+                      <tr *ngFor="let salary of salary">
+                        <td>{{salary.name}}</td>
+                        <td>{{salary.email}}</td>
+                        <td>{{salary.department}}</td>
+                        <td>{{salary.role}}</td>
+                        <td>{{salary.employee_salary}}</td>
+                        <td>{{salary.status}}</td>
+                        <td>
+                          <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
+                            <i class="bi bi-download" style="color: rgb(58, 192, 58);font-size: 20px; font-weight: bolder;"></i>
+                          </button></td>
+                          <td class="d-flex">
+                            <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Download" (click)="openUpdateModel(salary.id)">
+                              <i class="bi bi-pencil-square text-primary" style="color: rgb(58, 192, 58);font-size: 20px; font-weight: bolder;"></i>
+                            </button>
+                            <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
+                              <i class="bi bi-trash text-danger" style="color: rgb(58, 192, 58);font-size: 20px; font-weight: bolder;"></i>
+                            </button>
+                          </td>
                       </tr>
                     </tbody>
                   </table>
@@ -82,53 +91,79 @@
             <div class="modal-body">
               <form>
                 <div class="row">
+
                   <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
-                      <div class="form-group">
-                          <label for="name">Name</label>
-                          <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-                          <div class="invalid-feedback">Name is required</div>
-                      </div>
-                  </div>
+                      <label for="Name">Name<span class="required">*</span></label>
+                      <select class="form-select form-control" id="Name" name="Name" [(ngModel)]="employeeSalary.name">
+                          <option selected>Select Employee</option>
+                          <option *ngFor="let emp of employee">{{emp.name}}</option>
+                      </select>
+                </div>
+
                   <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                       <div class="form-group">
-                          <label for="leaveType">Department</label>
-                          <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                          <label for="Status">Status</label>
+                          <select class="form-select form-control" id="Status" name="Status" [(ngModel)]="employeeSalary.status">
+                            <option value="" selected>Select Employee</option>
+                            <option value="UNPAID">UNPAID</option>
+                            <option value="PAID">PAID</option>
+                        </select>
                       </div>
                   </div>
               </div>
               <div class="row">
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                     <div class="form-group">
-                        <label for="from">Role</label>
-                        <input type="date" class="form-control" id="from" placeholder="Enter your name" required>
+                        <label for="Deparment">Deparment</label>
+                        <select class="form-select form-control" id="Deparment" name="Deparment" [(ngModel)]="employeeSalary.department">
+                          <option selected>Select Employee</option>
+                          <option *ngFor="let emp of employee">{{emp.department}}</option>
+                      </select>
                         <div class="invalid-feedback">Name is required</div>
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <div class="form-group">
-                        <label for="to">Project</label>
-                        <input type="text" class="form-control" id="to" placeholder="Enter leave type" required>
+                        <label for="Role">Role</label>
+                        <select class="form-select form-control" id="Role" name="Role" [(ngModel)]="employeeSalary.role">
+                          <option selected>Select Employee</option>
+                          <option *ngFor="let emp of employee">{{emp.employee_role}}</option>
+                      </select>
                     </div>
                 </div>
             </div>
             <div class="row">
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                   <div class="form-group">
-                      <label for="name">Mobile</label>
-                      <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                      <label for="Salary">Salary</label>
+                      <input type="number" class="form-control" id="Salary" name="Salary" placeholder="Enter your name" required [(ngModel)]="employeeSalary.employee_salary">
                   </div>
               </div>
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <div class="form-group">
-                      <label for="leaveType">Email</label>
-                      <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                      <label for="Email">Email</label>
+                      <select class="form-select form-control" id="Email" name="Email" [(ngModel)]="employeeSalary.email">
+                        <option selected>Select Employee</option>
+                        <option *ngFor="let emp of employee">{{emp.email}}</option>
+                    </select>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                  <div class="form-group">
+                      <label for="Mobile">Mobile</label>
+                      <select class="form-select form-control" id="Mobile" name="Mobile">
+                        <option selected>Select Employee</option>
+                        <option *ngFor="let emp of employee">{{emp.phone_no}}</option>
+                    </select>
                   </div>
               </div>
           </div>
               </form>
             </div>
             <div class="ms-5 mb-3">
-              <button type="button" class="btn btn-danger">Send message</button>
+              <button type="button" class="btn btn-danger" (click)="updateSalaryRequest()">Send message</button>
               <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>

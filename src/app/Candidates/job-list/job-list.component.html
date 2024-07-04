@@ -32,30 +32,58 @@
                   <table class="table datatable">
                     <thead>
                       <tr>
-                        <th>Image</th>
+                        <th>Job Title</th>
                         <th>
-                          <b>N</b>ame
+                          Department
                         </th>
-                        <th>Employee_Id</th>
-                        <th>Deparment</th>
-                        <th>Role</th>
-                        <th>Email</th>
-                        <th>Salary</th>
-                        <th>Payslip</th>
+                        <th>Job Role</th>
+                        <th>Job Type</th>
+                        <th>Vacancies</th>
+                        <th>Date</th>
+                        <th>Apply</th>
+                        <th>status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Haviva Hernandez</td>
-                        <td>8136</td>
-                        <td>Suwałki</td>
-                        <td>2000/30/01</td>
-                        <td>16%</td>
-                        <td>16%</td>
-                        <td>16%</td>
-                        <td>16%</td>
-                        <td>16%</td>
+                      <tr *ngFor="let job of jobs">
+                        <td>{{job.title}}</td>
+                        <td>{{job.department}}</td>
+                        <td>{{job.role}}</td>
+                        <td class="cdk-column-status" *ngIf="job.jobType==='FULLTIME'">
+                          <span class="badge badge-pill bg-success text-white">FULLTIME</span>
+                      </td>
+                      <td class="cdk-column-status" *ngIf="job.jobType==='PART TIME'">
+                        <span class="badge badge-pill bg-danger text-white">PARTTIME</span>
+                    </td> 
+                    <td class="cdk-column-status" *ngIf="job.jobType==='OTHER'">
+                      <span class="badge badge-pill bg-warning text-white">OTHER</span>
+                  </td>
+                  <td class="cdk-column-status" *ngIf="job.jobType==='INTERNSHIP'">
+                    <span class="badge badge-pill bg-warning text-white">INTERNSHIP</span>
+                </td> 
+                        <td>{{job.vacancies}}</td>
+                        <td>{{job.date | date}}</td>
+                        <td class="cdk-column-status">
+                          <a [routerLink]="['/deshboard/candidate/apply', job.id]"><span class="badge badge-pill bg-success text-white">APPLY</span></a>
+                      </td>
+                        <td class="cdk-column-status" *ngIf="job.status==='OPEN'">
+                          <span class="badge badge-pill bg-success text-white">OPEN</span>
+                      </td>
+                      <td class="cdk-column-status" *ngIf="job.status==='CLOSED'">
+                        <span class="badge badge-pill bg-danger text-white">CLOSED</span>
+                    </td> 
+                    <td class="cdk-column-status" *ngIf="job.status==='CANCELLED'">
+                      <span class="badge badge-pill bg-warning text-white">CANCELLED</span>
+                  </td> 
+                        <td class="d-flex">
+                          <button type="button" class="btn btn-accent">
+                            <i class="bi bi-pencil-square text-primary"></i>
+                          </button>
+                          <button type="button" class="btn btn-accent">
+                            <i class="bi bi-trash text-danger"></i>
+                          </button>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -84,51 +112,70 @@
                 <div class="row">
                   <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                       <div class="form-group">
-                          <label for="name">Name</label>
-                          <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                          <label for="Title">Job Title</label>
+                          <input type="text" class="form-control" id="Title" name="Title" placeholder="Enter job title" required [(ngModel)]="createJob.title">
                           <div class="invalid-feedback">Name is required</div>
                       </div>
                   </div>
                   <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                       <div class="form-group">
-                          <label for="leaveType">Department</label>
-                          <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                          <label for="Deparment">Deparment</label>
+                          <input type="text" class="form-control" id="Deparment" name="Deparment" placeholder="Job Deparment" required [(ngModel)]="createJob.department">
                       </div>
                   </div>
               </div>
               <div class="row">
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                     <div class="form-group">
-                        <label for="from">Role</label>
-                        <input type="date" class="form-control" id="from" placeholder="Enter your name" required>
+                        <label for="Role">Role</label>
+                        <input type="text" class="form-control" id="Role" name="Role" placeholder="Job Role" required [(ngModel)]="createJob.role">
                         <div class="invalid-feedback">Name is required</div>
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <div class="form-group">
-                        <label for="to">Project</label>
-                        <input type="text" class="form-control" id="to" placeholder="Enter leave type" required>
+                        <label for="type">Job type</label>
+                        <select class="form-control" id="type" name="type" placeholder="Enter job type" required [(ngModel)]="createJob.jobType">
+                        <option value="">Enter job type</option>
+                        <option value="FULLTIME">FULLTIME</option>
+                        <option value="PART TIME">PART TIME</option>
+                        <option value="INTERNSHIP">INTERNSHIP</option>
+                        <option value="OTHER">OTHER</option>  
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="row">
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
                   <div class="form-group">
-                      <label for="name">Mobile</label>
-                      <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                      <label for="Vacancies">Vacancies</label>
+                      <input type="text" class="form-control" id="Vacancies" name="Vacancies" placeholder="Total Vacancies" required [(ngModel)]="createJob.vacancies">
                   </div>
               </div>
               <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <div class="form-group">
-                      <label for="leaveType">Email</label>
-                      <input type="text" class="form-control" id="leaveType" placeholder="Enter leave type" required>
+                      <label for="Status">Status</label>
+                      <select type="text" class="form-control" id="Status" name="Status" placeholder="Job Status" required [(ngModel)]="createJob.status">
+                        <option selected value="">Enter status</option>
+                        <option value="OPEN">OPEN</option>
+                        <option value="CANCELLED">CANCELLED</option>
+                        <option value="CLOSED">CLOSED</option>
+                        </select>
                   </div>
               </div>
           </div>
+          <div class="row">
+            <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                <div class="form-group">
+                    <label for="Expired">Expired Date</label>
+                    <input type="date" class="form-control" id="Expired" name="Expired" placeholder="Enter Expired Date" required [(ngModel)]="createJob.date">
+                </div>
+            </div>
+        </div>
               </form>
             </div>
             <div class="ms-5 mb-3">
-              <button type="button" class="btn btn-danger">Send message</button>
+              <button type="button" class="btn btn-danger" (click)="createJobe()">Send message</button>
               <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>

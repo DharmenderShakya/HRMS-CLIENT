@@ -1,1 +1,152 @@
-<p>billing works!</p>
+<main id="main" class="main">
+  <!-- End Page Title -->
+  
+      <section class="section">
+        <div class="row">
+          <div class="pagetitle">
+              <h1 class="float-start">Billing Table</h1>
+              <nav class="float-end">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                  <li class="breadcrumb-item">Tables</li>
+                  <li class="breadcrumb-item active">Data</li>
+                </ol>
+              </nav>
+            </div>
+          <div class="col-lg-12">
+            <div class="datatable-top ms-0" style="background-color: #BCD5EE;">
+              <div class="datatable-search">
+                      <span><strong>Bills</strong></span><input class="datatable-input ms-3 rounded" placeholder="Search..." type="search" title="Search within table">
+                  </div>
+                  <div class="d-flex">
+                      <button type="button" class="btn btn-sm btn-success rounded-pill" style="width: 2rem; height:2rem;"><i class="bi bi-arrow-clockwise icon"></i></button>
+                      <a href="#"><img src="assets/img/xlsx.png" alt="sdfghjk" style="height: 30px; width: auto;"></a>
+                      </div>
+          </div>
+            <div class="card">
+              <div class="card-body">
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <!-- <th>Image</th> -->
+                      <th>
+                        Client Name
+                      </th>
+                      <th>Employee Name</th>
+                      <th>Charges</th>
+                      <th>Date</th>
+                      <th>Tax</th>
+                      <th>Discount</th>
+                      <th>Total</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let pay of allPayment">
+                      <td>{{pay.clientName}}</td>
+                      <td>{{pay.employee_Name}}</td>
+                      <td>{{pay.charges}}</td>
+                      <td>{{pay.date | date}}</td>
+                      <td>{{pay.tax}}</td>
+                      <td>{{pay.discount}}</td>
+                      <td>{{pay.total}}</td>
+                      <td class="d-flex">
+                        <button type="button" class="btn">
+                          <i class="bi bi-cloud-arrow-down-fill" style="color: blueviolet;"></i>
+                        </button>
+                        <button type="button" class="btn">
+                          <i class="bi bi-printer-fill" style="color: rgb(32, 174, 199);"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+                <div class="datatable-bottom">
+      <div class="datatable-info">Showing 1 to 10 of 100 entries</div>
+      <nav class="datatable-pagination"><ul class="datatable-pagination-list"><li class="datatable-pagination-list-item datatable-hidden datatable-disabled"><button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">‹</button></li><li class="datatable-pagination-list-item datatable-active"><button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">1</button></li><li class="datatable-pagination-list-item"><button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">2</button></li><li class="datatable-pagination-list-item"><button data-page="3" class="datatable-pagination-list-item-link" aria-label="Page 3">3</button></li><li class="datatable-pagination-list-item"><button data-page="4" class="datatable-pagination-list-item-link" aria-label="Page 4">4</button></li><li class="datatable-pagination-list-item"><button data-page="5" class="datatable-pagination-list-item-link" aria-label="Page 5">5</button></li><li class="datatable-pagination-list-item"><button data-page="6" class="datatable-pagination-list-item-link" aria-label="Page 6">6</button></li><li class="datatable-pagination-list-item"><button data-page="7" class="datatable-pagination-list-item-link" aria-label="Page 7">7</button></li><li class="datatable-pagination-list-item datatable-ellipsis datatable-disabled"><button class="datatable-pagination-list-item-link">…</button></li><li class="datatable-pagination-list-item"><button data-page="10" class="datatable-pagination-list-item-link" aria-label="Page 10">10</button></li><li class="datatable-pagination-list-item"><button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">›</button></li></ul></nav>
+  </div>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </section>
+    </main>
+  
+    <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header mt-2" style="border: none;">
+            <h5 class="modal-title ms-5" id="exampleModalLabel">New Leaves</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                  <div>
+                    <label for="client">Client Name<span class="required">*</span></label>
+                       <select class="form-select form-control" id="client" name="client" [(ngModel)]="postPayment.client_Name">
+                           <option value="" selected>Select Client</option>
+                           <option *ngFor="let client of allClient">{{client.name}}</option>
+                       </select>
+                     </div>
+                </div>
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <div>
+                    <label for="Name">Billing_By<span class="required">*</span></label>
+                       <select class="form-select form-control" id="Name" name="Name" [(ngModel)]="postPayment.employee_Name">
+                           <option value="" selected>Select Employee</option>
+                           <option *ngFor="let emp of allEmployee">{{emp.name}}</option>
+                       </select>
+                     </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                  <div class="form-group">
+                      <label for="charges">charges</label>
+                      <input type="number" class="form-control" id="charges" name="charges" placeholder="Enter your name" required [(ngModel)]="postPayment.charges">
+                      <div class="invalid-feedback">Name is required</div>
+                  </div>
+              </div>
+              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <div class="form-group">
+                      <label for="tax">Tax</label>
+                      <input type="number" class="form-control" id="tax" name="tax" placeholder="Enter leave type" required [(ngModel)]="postPayment.tax">
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                <div class="form-group">
+                    <label for="total">Date</label>
+                    <input type="date" class="form-control" id="total" name="total" placeholder="Enter your name" required [(ngModel)]="postPayment.date">
+                </div>
+            </div>
+            <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+              <div class="form-group">
+                  <label for="total">Total</label>
+                  <input type="number" class="form-control" id="total" name="total" placeholder="Enter your name" required [(ngModel)]="postPayment.total">
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-10 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+            <div class="form-group">
+                <label for="discount">Discount</label>
+                <input type="number" class="form-control" id="discount" name="discount" placeholder="Enter leave type" required [(ngModel)]="postPayment.discount">
+            </div>
+        </div>
+      </div>
+            </form>
+          </div>
+          <div class="ms-5 mb-3">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" (click)="paymentRequest()" class="btn btn-primary ms-2">Send message</button>
+          </div>
+        </div>
+      </div>
+    </div>    

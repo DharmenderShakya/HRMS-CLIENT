@@ -1,16 +1,4 @@
 <main id="main" class="main">
-
-    <!-- <div class="pagetitle">
-      <h1>Profile</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Profile</li>
-        </ol>
-      </nav>
-    </div> -->
-
     <section class="section profile">
       <div class="row">
 
@@ -24,19 +12,18 @@
                     </ol>
                   </nav>
         </div>
-
         <div class="col-xl-12">
           <div class="card">
             <div class="card-body pt-3">
               <!-- Bordered Tabs -->
-              <ul class="nav nav-tabs nav-tabs-bordered">
+              <ul class="nav nav-tabs-bordered gap-5">
 
-                <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#about">About</button>
+                <li class="nav-item" style="margin-left:220px;">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#about">Details</button>
                 </li>
 
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#skill">Skill</button>
+                <li class="nav-item" style="margin-left: 45%;">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#skill">Charts</button>
                 </li>
               </ul>
               <div class="tab-content pt-2">
@@ -81,25 +68,25 @@
                                     <div class="row">
                                         <div class="col-lg-3 col-sm-6">
                                             <div class="text-center m-b-20">
-                                                <h3 class="m-b-10 col-green">08:00</h3>
+                                                <h3 class="m-b-10 text-success">08:00</h3>
                                                 <div class="text font-15 m-b-5">Average Working Hours </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-sm-6">
                                             <div class="text-center m-b-20">
-                                                <h3 class="m-b-10 col-green">10:30 AM</h3>
+                                                <h3 class="m-b-10 text-success">10:30 AM</h3>
                                                 <div class="text font-15 m-b-5">Average In Time</div>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-sm-6">
                                             <div class="text-center m-b-20">
-                                                <h3 class="m-b-10 col-green">07:30 PM</h3>
+                                                <h3 class="m-b-10 text-success">07:30 PM</h3>
                                                 <div class="text font-15 m-b-5">Average Out Time</div>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-sm-6">
                                             <div class="text-center m-b-20">
-                                                <h3 class="m-b-10 col-green">01:00</h3>
+                                                <h3 class="m-b-10 text-success">01:00</h3>
                                                 <div class="text font-15 m-b-5">Average Break Time</div>
                                             </div>
                                         </div>
@@ -114,7 +101,7 @@
                                                     <th class="center"> Working Hours </th>
                                                     <th class="center"> Shift </th>
                                                     <th class="center"> Status </th>
-                                                    <th class="center"> Action </th>
+                                                    <th> Action </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -124,16 +111,19 @@
                                                     <td class="center col-green">19:32</td>
                                                     <td class="center col-green">08:04</td>
                                                     <td class="center">Shift 1</td>
-                                                    <td class="center">
-                                                        <div class="badge col-green">Present</div>
-                                                    </td>
-                                                    <td class="center">
-                                                        <button mat-icon-button="" color="accent" mattooltip="Edit" class="mat-mdc-tooltip-trigger tbl-action-btn mdc-icon-button mat-mdc-icon-button mat-accent mat-mdc-button-base">
-                                                            <!-- <i-feather class="tbl-fav-edit"></i-feather> -->
-                                                        </button>
-                                                        <button mat-icon-button="" color="accent" mattooltip="Delete" class="mat-mdc-tooltip-trigger tbl-action-btn mdc-icon-button mat-mdc-icon-button mat-accent mat-mdc-button-base">
-                                                            <!-- <i-feather class="tbl-fav-delete"></i-feather> -->
-                                                        </button>
+                                                    <td class="cdk-column-status" *ngIf="isVisibleStatus==='ABSENT'">
+                                                      <span class="badge badge-pill bg-danger text-white">Declined</span>
+                                                  </td> 
+                                                  <td class="cdk-column-status" *ngIf="isVisibleStatus==='PRESENT'">
+                                                    <span class="badge badge-pill bg-warning text-white">Accepted</span>
+                                                </td> 
+                                                    <td class="d-flex">
+                                                      <button type="button" class="btn">
+                                                        <i class="bi bi-pencil-square text-primary"></i>
+                                                      </button>
+                                                      <button type="button" class="btn">
+                                                        <i class="bi bi-trash text-danger"></i>
+                                                      </button>
                                                     </td>
                                                 </tr>
                                                 <!-- Other table rows are skipped for brevity -->

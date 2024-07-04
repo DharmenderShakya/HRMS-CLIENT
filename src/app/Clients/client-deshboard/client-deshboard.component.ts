@@ -47,7 +47,7 @@ export class ClientDeshboardComponent implements OnInit {
         curve: "smooth"
       },
       title: {
-        text: "Average High & Low Temperature",
+        text: "ERP System (Java)",
         align: "left"
       },
       grid: {
@@ -63,12 +63,12 @@ export class ClientDeshboardComponent implements OnInit {
       xaxis: {
         categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
         title: {
-          text: "Month"
+          text: "Months"
         }
       },
       yaxis: {
         title: {
-          text: "Temperature"
+          text: "Hours"
         },
         min: 5,
         max: 40
@@ -113,7 +113,7 @@ renderLine1(): void {
       curve: "smooth"
     },
     title: {
-      text: "Average High & Low Temperature",
+      text: "My shop App (android)",
       align: "left"
     },
     grid: {
@@ -129,12 +129,12 @@ renderLine1(): void {
     xaxis: {
       categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
       title: {
-        text: "Month"
+        text: "Months"
       }
     },
     yaxis: {
       title: {
-        text: "Temperature"
+        text: "Hours"
       },
       min: 5,
       max: 40

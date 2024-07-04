@@ -1,1 +1,81 @@
-<p>my-team works!</p>
+<main id="main" class="main">
+    <!-- End Page Title -->
+    
+        <section class="section">
+          <div class="row">
+            <div class="pagetitle">
+                <h1 class="float-start">Employees Table</h1>
+                <nav class="float-end">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Tables</li>
+                    <li class="breadcrumb-item active">Data</li>
+                  </ol>
+                </nav>
+              </div>
+            <div class="col-lg-12">
+              <div class="datatable-top ms-0" style="background-color: #BCD5EE;">
+                <div class="datatable-search">
+                        <span><strong>Employee Salary</strong></span><input class="datatable-input ms-3 rounded" placeholder="Search..." type="search" title="Search within table">
+                    </div>
+                    <div class="d-flex">
+                      <button type="button" class="btn btn-sm btn-primary rounded-pill" data-bs-toggle="modal" style="width: 2rem; height:2rem;"><i class="bi bi-plus-lg icon"></i></button>
+                        
+                        <button type="button" class="btn btn-sm btn-success rounded-pill" style="width: 2rem; height:2rem;"><i class="bi bi-arrow-clockwise icon"></i></button>
+                     
+                        <a href="#"><img src="assets/img/xlsx.png" alt="sdfghjk" style="height: 30px; width: auto;"></a>
+                        </div>
+            </div>
+              <div class="card">
+                <div class="card-body">
+                  <!-- Table with stripped rows -->
+                  <table class="table datatable table-fixed">
+                    <thead>
+                      <tr>
+                        <th>Leader Image</th>
+                        <th>
+                          Member
+                        </th>
+                        <th>Deparment</th>
+                        <th>Role</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let team of teams">
+                        <td><span><span ><img class="rounded-circle ms-3" *ngIf="team.image" [src]="'data:image/png;base64,'+team.image" style="height: 30px;width: 30px;"></span></span></td>
+                        <td>
+                          <span><span>{{team.name}}</span></span>
+                        </td>
+                        <td>{{team.department}}</td>
+                        <td>{{team.employee_role}}</td>
+                        <td>{{team.phone_no}}</td>
+                        <td>{{team.employe_address}}</td>
+                        <td class="d-flex">
+                          <button type="button" class="btn">
+                            <i class="bi bi-pencil-square text-primary"></i>
+                          </button>
+                          <button type="button" class="btn">
+                            <i class="bi bi-trash text-danger"></i>
+                          </button>
+                        </td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- End Table with stripped rows -->
+                  <div class="datatable-bottom">
+        <div class="datatable-info">Showing 1 to 10 of 100 entries</div>
+        <nav class="datatable-pagination"><ul class="datatable-pagination-list"><li class="datatable-pagination-list-item datatable-hidden datatable-disabled"><button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">‹</button></li><li class="datatable-pagination-list-item datatable-active"><button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">1</button></li><li class="datatable-pagination-list-item"><button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">2</button></li><li class="datatable-pagination-list-item"><button data-page="3" class="datatable-pagination-list-item-link" aria-label="Page 3">3</button></li><li class="datatable-pagination-list-item"><button data-page="4" class="datatable-pagination-list-item-link" aria-label="Page 4">4</button></li><li class="datatable-pagination-list-item"><button data-page="5" class="datatable-pagination-list-item-link" aria-label="Page 5">5</button></li><li class="datatable-pagination-list-item"><button data-page="6" class="datatable-pagination-list-item-link" aria-label="Page 6">6</button></li><li class="datatable-pagination-list-item"><button data-page="7" class="datatable-pagination-list-item-link" aria-label="Page 7">7</button></li><li class="datatable-pagination-list-item datatable-ellipsis datatable-disabled"><button class="datatable-pagination-list-item-link">…</button></li><li class="datatable-pagination-list-item"><button data-page="10" class="datatable-pagination-list-item-link" aria-label="Page 10">10</button></li><li class="datatable-pagination-list-item"><button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">›</button></li></ul></nav>
+    </div>
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </section>
+      </main>
+    
+      

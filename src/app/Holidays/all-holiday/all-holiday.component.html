@@ -16,7 +16,7 @@
             <div class="col-lg-12">
               <div class="datatable-top ms-0" style="background-color: #BCD5EE;">
                   <div class="datatable-search">
-                          <span><strong>All Holidays</strong></span><input class="datatable-input ms-3 rounded" placeholder="Search..." type="search" title="Search within table">
+                          <span><strong>Holidays</strong></span><input class="datatable-input ms-3 rounded" placeholder="Search..." type="search" title="Search within table">
                       </div>
                       <div class="d-flex">
                         <button type="button" class="btn btn-sm btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 2rem; height:2rem;"><i class="bi bi-plus-lg icon"></i></button>
@@ -32,30 +32,32 @@
                   <table class="table datatable">
                     <thead>
                       <tr>
-                        <th>Image</th>
                         <th>
                           Holiday Name
                         </th>
                         <th>Date</th>
-                        <th>Location</th>
-                        <th>Shift</th>
                         <th>Details</th>
-                        <th>Degree</th>
-                        <th>Action</th>
+                        <th>Shift</th>
+                        <th>Location</th>
+                        <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Unity Pugh</td>
-                        <td>9958</td>
-                        <td>Curicó</td>
-                        <td>2005/02/11</td>
-                        <td>37%</td>
-                        <td>37%</td>
-                        <td>37%</td>
-                        <td>37%</td>
+                      <tr *ngFor="let holiday of employeeHolidays">
+                        <td>{{holiday.name}}</td>
+                        <td>{{holiday.holidayDate}}</td>
+                        <td>{{holiday.details}}</td>
+                        <td>{{holiday.shift}}</td>
+                        <td>{{holiday.location}}</td>
+                        <td class="d-flex justify-content-center mt-3">
+                          <button type="button" class="btn btn-accent" (click)="openUpdateModel(holiday.id)">
+                            <i class="bi bi-pencil-square text-primary"></i>
+                          </button>
+                          <button type="button" class="btn btn-accent">
+                            <i class="bi bi-trash text-danger"></i>
+                          </button>
+                        </td>
                       </tr>
-                      
                     </tbody>
                   </table>
                   <!-- End Table with stripped rows -->
@@ -71,28 +73,59 @@
         </section>
       </main>
     
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-header mt-2" style="border: none;">
+              <h5 class="modal-title ms-5" id="exampleModalLabel">New Leaves</h5>
+              <button type="button" class="btn-close" (click)="closeModel()" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                  <input type="text" class="form-control" id="recipient-name">
+                <div class="row">
+                  <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required [(ngModel)]="addUpdateHoliday.name">
+                        <div class="invalid-feedback">Name is required</div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
+                  <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <div class="form-group">
+                      <label for="Date">Date</label>
+                      <input type="Date" class="form-control" id="Date" name="Date" placeholder="Enter your name" required [(ngModel)]="addUpdateHoliday.holidayDate">
+                      <div class="invalid-feedback">Name is required</div>
+                  </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                    <div class="form-group">
+                        <label for="Location">Location</label>
+                        <input type="text" class="form-control" id="Location" name="Location" placeholder="Enter your name" required [(ngModel)]="addUpdateHoliday.location">
+                        <div class="invalid-feedback">Name is required</div>
+                    </div>
                 </div>
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <div class="form-group">
+                        <label for="shift">shift</label>
+                        <input type="text" class="form-control" id="shift" name="shift" placeholder="Enter leave type" required [(ngModel)]="addUpdateHoliday.shift">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 mb-2 ms-5">
+                  <div class="form-group">
+                      <label for="Details">Details</label>
+                      <input type="text" class="form-control" id="Details" name="Details" placeholder="Enter your name" required [(ngModel)]="addUpdateHoliday.details">
+                  </div>
+              </div>
+          </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
+            <div class="ms-5 mb-3">
+              <button type="button" class="btn btn-secondary" (click)="closeModel()" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary ms-2" (click)="updateRequest()">Send message</button>
             </div>
           </div>
         </div>
